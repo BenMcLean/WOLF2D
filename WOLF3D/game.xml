@@ -1,0 +1,759 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Game Name="Wolfenstein 3D Shareware v1.4" Exe="WOLF3D.EXE" HighScores="CONFIG.WL1">
+  <VgaGraph VgaDict="VGADICT.WL1" VgaGraph="VGAGRAPH.WL1" VgaHead="VGAHEAD.WL1">
+    <Sizes Chunk="0" StartPics="3" NumPics="140" StartFont="1" NumFont="2" />
+    <Font Number="0" Chunk="1" Name="Small" />
+    <Font Number="1" Chunk="2" Name="Large" />
+    <Pic Number="0" Chunk="3" Name="H_BJPIC" />
+    <Pic Number="1" Chunk="4" Name="H_CASTLEPIC" />
+    <Pic Number="2" Chunk="5" Name="H_KEYBOARDPIC" />
+    <Pic Number="3" Chunk="6" Name="H_JOYPIC" />
+    <Pic Number="4" Chunk="7" Name="H_MOUSEPIC" />
+    <Pic Number="5" Chunk="8" Name="H_BOTHPIC" />
+    <Pic Number="6" Chunk="9" Name="H_GAMEPADPIC" />
+    <Pic Number="7" Chunk="10" Name="H_HEALPIC" />
+    <Pic Number="8" Chunk="11" Name="H_TREASUREPIC" />
+    <Pic Number="9" Chunk="12" Name="H_GUNPIC" />
+    <Pic Number="10" Chunk="13" Name="H_KEYPIC" />
+    <Pic Number="11" Chunk="14" Name="H_BLAZEPIC" />
+    <Pic Number="12" Chunk="15" Name="H_WEAPON1234PIC" />
+    <Pic Number="13" Chunk="16" Name="H_WOLFLOGOPIC" />
+    <Pic Number="14" Chunk="17" Name="H_VISAPIC" />
+    <Pic Number="15" Chunk="18" Name="H_MCPIC" />
+    <Pic Number="16" Chunk="19" Name="H_IDLOGOPIC" />
+    <Pic Number="17" Chunk="20" Name="H_FAXPIC" />
+    <Pic Number="18" Chunk="21" Name="H_FAXPIC" />
+    <Pic Number="19" Chunk="22" Name="H_FGODMOMPIC" />
+    <Pic Number="20" Chunk="23" Name="H_AUSTRALIAPIC" />
+    <Pic Number="21" Chunk="24" Name="H_CANADAPIC" />
+    <Pic Number="22" Chunk="25" Name="H_UKPIC" />
+    <Pic Number="23" Chunk="26" Name="C_OPTIONSPIC" />
+    <Pic Number="24" Chunk="27" Name="C_CURSOR1PIC" />
+    <Pic Number="25" Chunk="28" Name="C_CURSOR2PIC" />
+    <Pic Number="26" Chunk="29" Name="C_NOTSELECTEDPIC" />
+    <Pic Number="27" Chunk="30" Name="C_SELECTEDPIC" />
+    <Pic Number="28" Chunk="31" Name="C_FXTITLEPIC" />
+    <Pic Number="29" Chunk="32" Name="C_DIGITITLEPIC" />
+    <Pic Number="30" Chunk="33" Name="C_MUSICTITLEPIC" />
+    <Pic Number="31" Chunk="34" Name="C_MOUSELBACKPIC" />
+    <Pic Number="32" Chunk="35" Name="C_BABYMODEPIC" />
+    <Pic Number="33" Chunk="36" Name="C_EASYPIC" />
+    <Pic Number="34" Chunk="37" Name="C_NORMALPIC" />
+    <Pic Number="35" Chunk="38" Name="C_HARDPIC" />
+    <Pic Number="36" Chunk="39" Name="C_LOADSAVEDISKPIC" />
+    <Pic Number="37" Chunk="40" Name="C_DISKLOADING1PIC" />
+    <Pic Number="38" Chunk="41" Name="C_DISKLOADING2PIC" />
+    <Pic Number="39" Chunk="42" Name="C_CONTROLPIC" />
+    <Pic Number="40" Chunk="43" Name="C_CUSTOMIZEPIC" />
+    <Pic Number="41" Chunk="44" Name="C_LOADGAMEPIC" />
+    <Pic Number="42" Chunk="45" Name="C_SAVEGAMEPIC" />
+    <Pic Number="43" Chunk="46" Name="C_EPISODE1PIC" />
+    <Pic Number="44" Chunk="47" Name="C_EPISODE2PIC" />
+    <Pic Number="45" Chunk="48" Name="C_EPISODE3PIC" />
+    <Pic Number="46" Chunk="49" Name="C_EPISODE4PIC" />
+    <Pic Number="47" Chunk="50" Name="C_EPISODE5PIC" />
+    <Pic Number="48" Chunk="51" Name="C_EPISODE6PIC" />
+    <Pic Number="49" Chunk="52" Name="C_CODEPIC" />
+    <Pic Number="50" Chunk="53" Name="L_GUYPIC" />
+    <Pic Number="51" Chunk="54" Name="L_COLONPIC" />
+    <Pic Number="52" Chunk="55" Name="L_NUM0PIC" />
+    <Pic Number="53" Chunk="56" Name="L_NUM1PIC" />
+    <Pic Number="54" Chunk="57" Name="L_NUM2PIC" />
+    <Pic Number="55" Chunk="58" Name="L_NUM3PIC" />
+    <Pic Number="56" Chunk="59" Name="L_NUM4PIC" />
+    <Pic Number="57" Chunk="60" Name="L_NUM5PIC" />
+    <Pic Number="58" Chunk="61" Name="L_NUM6PIC" />
+    <Pic Number="59" Chunk="62" Name="L_NUM7PIC" />
+    <Pic Number="60" Chunk="63" Name="L_NUM8PIC" />
+    <Pic Number="61" Chunk="64" Name="L_NUM9PIC" />
+    <Pic Number="62" Chunk="65" Name="L_PERCENTPIC" />
+    <Pic Number="63" Chunk="66" Name="L_APIC" />
+    <Pic Number="64" Chunk="67" Name="L_BPIC" />
+    <Pic Number="65" Chunk="68" Name="L_CPIC" />
+    <Pic Number="66" Chunk="69" Name="L_DPIC" />
+    <Pic Number="67" Chunk="70" Name="L_EPIC" />
+    <Pic Number="68" Chunk="71" Name="L_FPIC" />
+    <Pic Number="69" Chunk="72" Name="L_GPIC" />
+    <Pic Number="70" Chunk="73" Name="L_HPIC" />
+    <Pic Number="71" Chunk="74" Name="L_IPIC" />
+    <Pic Number="72" Chunk="75" Name="L_JPIC" />
+    <Pic Number="73" Chunk="76" Name="L_KPIC" />
+    <Pic Number="74" Chunk="77" Name="L_LPIC" />
+    <Pic Number="75" Chunk="78" Name="L_MPIC" />
+    <Pic Number="76" Chunk="79" Name="L_NPIC" />
+    <Pic Number="77" Chunk="80" Name="L_OPIC" />
+    <Pic Number="78" Chunk="81" Name="L_PPIC" />
+    <Pic Number="79" Chunk="82" Name="L_QPIC" />
+    <Pic Number="80" Chunk="83" Name="L_RPIC" />
+    <Pic Number="81" Chunk="84" Name="L_SPIC" />
+    <Pic Number="82" Chunk="85" Name="L_TPIC" />
+    <Pic Number="83" Chunk="86" Name="L_UPIC" />
+    <Pic Number="84" Chunk="87" Name="L_VPIC" />
+    <Pic Number="85" Chunk="88" Name="L_WPIC" />
+    <Pic Number="86" Chunk="89" Name="L_XPIC" />
+    <Pic Number="87" Chunk="90" Name="L_YPIC" />
+    <Pic Number="88" Chunk="91" Name="L_ZPIC" />
+    <Pic Number="89" Chunk="92" Name="L_GUY2PIC" />
+    <Pic Number="90" Chunk="93" Name="L_BJWINSPIC" />
+    <Pic Number="91" Chunk="94" Name="STATUSBARPIC" />
+    <Pic Number="92" Chunk="95" Name="TITLEPIC" />
+    <Pic Number="93" Chunk="96" Name="PG13PIC" />
+    <Pic Number="94" Chunk="97" Name="CREDITSPIC" />
+    <Pic Number="95" Chunk="98" Name="HIGHSCORESPIC" />
+    <Pic Number="96" Chunk="99" Name="KNIFEPIC" />
+    <Pic Number="97" Chunk="100" Name="GUNPIC" />
+    <Pic Number="98" Chunk="101" Name="MACHINEGUNPIC" />
+    <Pic Number="99" Chunk="102" Name="GATLINGGUNPIC" />
+    <Pic Number="100" Chunk="103" Name="NOKEYPIC" />
+    <Pic Number="101" Chunk="104" Name="GOLDKEYPIC" />
+    <Pic Number="102" Chunk="105" Name="SILVERKEYPIC" />
+    <Pic Number="103" Chunk="106" Name="N_BLANKPIC" />
+    <Pic Number="104" Chunk="107" Name="N_0PIC" />
+    <Pic Number="105" Chunk="108" Name="N_1PIC" />
+    <Pic Number="106" Chunk="109" Name="N_2PIC" />
+    <Pic Number="107" Chunk="110" Name="N_3PIC" />
+    <Pic Number="108" Chunk="111" Name="N_4PIC" />
+    <Pic Number="109" Chunk="112" Name="N_5PIC" />
+    <Pic Number="110" Chunk="113" Name="N_6PIC" />
+    <Pic Number="111" Chunk="114" Name="N_7PIC" />
+    <Pic Number="112" Chunk="115" Name="N_8PIC" />
+    <Pic Number="113" Chunk="116" Name="N_9PIC" />
+    <Pic Number="114" Chunk="117" Name="FACE1APIC" />
+    <Pic Number="115" Chunk="118" Name="FACE1BPIC" />
+    <Pic Number="116" Chunk="119" Name="FACE1CPIC" />
+    <Pic Number="117" Chunk="120" Name="FACE2APIC" />
+    <Pic Number="118" Chunk="121" Name="FACE2BPIC" />
+    <Pic Number="119" Chunk="122" Name="FACE2CPIC" />
+    <Pic Number="120" Chunk="123" Name="FACE3APIC" />
+    <Pic Number="121" Chunk="124" Name="FACE3BPIC" />
+    <Pic Number="122" Chunk="125" Name="FACE3CPIC" />
+    <Pic Number="123" Chunk="126" Name="FACE4APIC" />
+    <Pic Number="124" Chunk="127" Name="FACE4BPIC" />
+    <Pic Number="125" Chunk="128" Name="FACE4CPIC" />
+    <Pic Number="126" Chunk="129" Name="FACE5APIC" />
+    <Pic Number="127" Chunk="130" Name="FACE5BPIC" />
+    <Pic Number="128" Chunk="131" Name="FACE5CPIC" />
+    <Pic Number="129" Chunk="132" Name="FACE6APIC" />
+    <Pic Number="130" Chunk="133" Name="FACE6BPIC" />
+    <Pic Number="131" Chunk="134" Name="FACE6CPIC" />
+    <Pic Number="132" Chunk="135" Name="FACE7APIC" />
+    <Pic Number="133" Chunk="136" Name="FACE7BPIC" />
+    <Pic Number="134" Chunk="137" Name="FACE7CPIC" />
+    <Pic Number="135" Chunk="138" Name="FACE8APIC" />
+    <Pic Number="136" Chunk="139" Name="GOTGATLINGPIC" />
+    <Pic Number="137" Chunk="140" Name="PAUSEDPIC" />
+    <Pic Number="138" Chunk="141" Name="GETPSYCHEDPIC" />
+    <Pic Number="139" Chunk="557" Name="ORDERSCREEN" />
+    <Pic Number="140" Chunk="558" Name="ENUMEND" />
+  </VgaGraph>
+  <Maps MapHead="MAPHEAD.WL1" GameMaps="GAMEMAPS.WL1" />
+  <Audio AudioHead="AUDIOHED.WL1" AudioT="AUDIOT.WL1" NumSounds="87" NumSndChunks="288" StartPCSounds="0" StartAdlibSounds="87" StartMusic="261">
+    <Sound Number="0" Name="HITWALLSND" />
+    <Sound Number="1" Name="SELECTWPNSND" />
+    <Sound Number="2" Name="SELECTITEMSND" />
+    <Sound Number="3" Name="HEARTBEATSND" />
+    <Sound Number="4" Name="MOVEGUN2SND" />
+    <Sound Number="5" Name="MOVEGUN1SND" />
+    <Sound Number="6" Name="NOWAYSND" />
+    <Sound Number="7" Name="NAZIHITPLAYERSND" />
+    <Sound Number="8" Name="FIRESND" />
+    <Sound Number="9" Name="PLAYERDEATHSND" />
+    <Sound Number="10" Name="DOGDEATHSND" />
+    <Sound Number="11" Name="ATKGATLINGSND" />
+    <Sound Number="12" Name="GETKEYSND" />
+    <Sound Number="13" Name="NOITEMSND" />
+    <Sound Number="14" Name="WALK1SND" />
+    <Sound Number="15" Name="WALK2SND" />
+    <Sound Number="16" Name="TAKEDAMAGESND" />
+    <Sound Number="17" Name="GAMEOVERSND" />
+    <Sound Number="18" Name="OPENDOORSND" />
+    <Sound Number="19" Name="CLOSEDOORSND" />
+    <Sound Number="20" Name="DONOTHINGSND" />
+    <Sound Number="21" Name="HALTSND" />
+    <Sound Number="22" Name="DEATHSCREAM2SND" />
+    <Sound Number="23" Name="ATKKNIFESND" />
+    <Sound Number="24" Name="ATKPISTOLSND" />
+    <Sound Number="25" Name="DEATHSCREAM3SND" />
+    <Sound Number="26" Name="ATKMACHINEGUNSND" />
+    <Sound Number="27" Name="HITENEMYSND" />
+    <Sound Number="28" Name="SHOOTDOORSND" />
+    <Sound Number="29" Name="DEATHSCREAM1SND" />
+    <Sound Number="30" Name="GETMACHINESND" />
+    <Sound Number="31" Name="GETAMMOSND" />
+    <Sound Number="32" Name="SHOOTSND" />
+    <Sound Number="33" Name="HEALTH1SND" />
+    <Sound Number="34" Name="HEALTH2SND" />
+    <Sound Number="35" Name="BONUS1SND" />
+    <Sound Number="36" Name="BONUS2SND" />
+    <Sound Number="37" Name="BONUS3SND" />
+    <Sound Number="38" Name="GETGATLINGSND" />
+    <Sound Number="39" Name="ESCPRESSEDSND" />
+    <Sound Number="40" Name="LEVELDONESND" />
+    <Sound Number="41" Name="DOGBARKSND" />
+    <Sound Number="42" Name="ENDBONUS1SND" />
+    <Sound Number="43" Name="ENDBONUS2SND" />
+    <Sound Number="44" Name="BONUS1UPSND" />
+    <Sound Number="45" Name="BONUS4SND" />
+    <Sound Number="46" Name="PUSHWALLSND" />
+    <Sound Number="47" Name="NOBONUSSND" />
+    <Sound Number="48" Name="PERCENT100SND" />
+    <Sound Number="49" Name="BOSSACTIVESND" />
+    <Sound Number="50" Name="MUTTISND" />
+    <Sound Number="51" Name="SCHUTZADSND" />
+    <Sound Number="52" Name="AHHHGSND" />
+    <Sound Number="53" Name="DIESND" />
+    <Sound Number="54" Name="EVASND" />
+    <Sound Number="55" Name="GUTENTAGSND" />
+    <Sound Number="56" Name="LEBENSND" />
+    <Sound Number="57" Name="SCHEISTSND" />
+    <Sound Number="58" Name="NAZIFIRESND" />
+    <Sound Number="59" Name="BOSSFIRESND" />
+    <Sound Number="60" Name="SSFIRESND" />
+    <Sound Number="61" Name="SLURPIESND" />
+    <Sound Number="62" Name="TOT_HUNDSND" />
+    <Sound Number="63" Name="MEINGOTTSND" />
+    <Sound Number="64" Name="SCHABBSHASND" />
+    <Sound Number="65" Name="HITLERHASND" />
+    <Sound Number="66" Name="SPIONSND" />
+    <Sound Number="67" Name="NEINSOVASSND" />
+    <Sound Number="68" Name="DOGATTACKSND" />
+    <Sound Number="69" Name="FLAMETHROWERSND" />
+    <Sound Number="70" Name="MECHSTEPSND" />
+    <Sound Number="71" Name="GOOBSSND" />
+    <Sound Number="72" Name="YEAHSND" />
+    <Sound Number="73" Name="DEATHSCREAM4SND" />
+    <Sound Number="74" Name="DEATHSCREAM5SND" />
+    <Sound Number="75" Name="DEATHSCREAM6SND" />
+    <Sound Number="76" Name="DEATHSCREAM7SND" />
+    <Sound Number="77" Name="DEATHSCREAM8SND" />
+    <Sound Number="78" Name="DEATHSCREAM9SND" />
+    <Sound Number="79" Name="DONNERSND" />
+    <Sound Number="80" Name="EINESND" />
+    <Sound Number="81" Name="ERLAUBENSND" />
+    <Sound Number="82" Name="KEINSND" />
+    <Sound Number="83" Name="MEINSND" />
+    <Sound Number="84" Name="ROSESND" />
+    <Sound Number="85" Name="MISSILEFIRESND" />
+    <Sound Number="86" Name="MISSILEHITSND" />
+    <Imf Number="0" Name="CORNER_MUS" />
+    <Imf Number="1" Name="DUNGEON_MUS" />
+    <Imf Number="2" Name="WARMARCH_MUS" />
+    <Imf Number="3" Name="GETTHEM_MUS" />
+    <Imf Number="4" Name="HEADACHE_MUS" />
+    <Imf Number="5" Name="HITLWLTZ_MUS" />
+    <Imf Number="6" Name="INTROCW3_MUS" />
+    <Imf Number="7" Name="NAZI_NOR_MUS" />
+    <Imf Number="8" Name="NAZI_OMI_MUS" />
+    <Imf Number="9" Name="POW_MUS" />
+    <Imf Number="10" Name="SALUTE_MUS" />
+    <Imf Number="11" Name="SEARCHN_MUS" />
+    <Imf Number="12" Name="SUSPENSE_MUS" />
+    <Imf Number="13" Name="VICTORS_MUS" />
+    <Imf Number="14" Name="WONDERIN_MUS" />
+    <Imf Number="15" Name="FUNKYOU_MUS" />
+    <Imf Number="16" Name="ENDLEVEL_MUS" />
+    <Imf Number="17" Name="GOINGAFT_MUS" />
+    <Imf Number="18" Name="PREGNANT_MUS" />
+    <Imf Number="19" Name="ULTIMATE_MUS" />
+    <Imf Number="20" Name="NAZI_RAP_MUS" />
+    <Imf Number="21" Name="ZEROHOUR_MUS" />
+    <Imf Number="22" Name="TWELFTH_MUS" />
+    <Imf Number="23" Name="ROSTER_MUS" />
+    <Imf Number="24" Name="URAHERO_MUS" />
+    <Imf Number="25" Name="VICMARCH_MUS" />
+    <Imf Number="26" Name="PACMAN_MUS" />
+  </Audio>
+  <VSwap Name="VSWAP.WL1">
+    <Walls>
+      <Wall Number="1" Page="0" DarkSide="1" Name="Grey Brick 1" />
+      <Wall Number="2" Page="2" DarkSide="3" Name="Grey Brick 2" />
+      <Wall Number="3" Page="4" DarkSide="5" Name="Grey Brick with Flag" />
+      <Wall Number="4" Page="6" DarkSide="7" Name="Grey Brick with Hitler" />
+      <Wall Number="5" Page="8" DarkSide="9" Name="Cell" />
+      <Wall Number="6" Page="10" DarkSide="11" Name="Grey Brick with Eagle" />
+      <Wall Number="7" Page="12" DarkSide="13" Name="Cell with Skeleton" />
+      <Wall Number="8" Page="14" DarkSide="15" Name="Blue Brick 1" />
+      <Wall Number="9" Page="16" DarkSide="17" Name="Blue Brick 2" />
+      <Wall Number="10" Page="18" DarkSide="19" Name="Wood with Eagle" />
+      <Wall Number="11" Page="20" DarkSide="21" Name="Wood with Hitler" />
+      <Wall Number="12" Page="22" DarkSide="23" Name="Wood" />
+      <Wall Number="13" Page="24" DarkSide="25" Name="Entrance to Level" />
+      <Wall Number="14" Page="26" DarkSide="27" Name="Steel with Sign" />
+      <Wall Number="15" Page="28" DarkSide="29" Name="Steel" />
+      <Wall Number="16" Page="30" DarkSide="31" Name="Landscape" />
+      <Wall Number="17" Page="32" DarkSide="33" Name="Red Brick" />
+      <Wall Number="18" Page="34" DarkSide="35" Name="Red Brick with Swastika" />
+      <Wall Number="19" Page="36" DarkSide="37" Name="Purple" />
+      <Wall Number="20" Page="38" DarkSide="39" Name="Red Brick with Flag" />
+      <Wall Number="21" Page="40" DarkSide="41" Name="Elevator" />
+      <Wall Number="22" Page="42" DarkSide="43" Name="Fake Elevator" />
+      <Wall Number="23" Page="44" DarkSide="45" Name="Wood with Iron Cross" />
+      <Wall Number="24" Page="46" DarkSide="47" Name="Dirty Brick 1" />
+      <Wall Number="25" Page="48" DarkSide="49" Name="Purple with Blood" />
+      <Wall Number="26" Page="50" DarkSide="51" Name="Dirty Brick 2" />
+      <Wall Number="27" Page="52" DarkSide="53" Name="Grey Brick 3" />
+      <Wall Number="28" Page="54" DarkSide="55" Name="Grey Brick with Sign" />
+      <Wall Number="50" Page="98" DarkSide="99" Name="Fake Door" />
+      <Wall Number="51" Page="100" DarkSide="101" Name="Door Frame" />
+      <Wall Number="52" Page="102" DarkSide="103" Name="Fake Elevator Again" />
+      <Wall Number="53" Page="104" DarkSide="105" Name="Fake Locked Door" />
+      <Wall Number="85" Page="42" DarkSide="43" Name="Elevator Wall" />
+      <Door Number="90" Page="99" Name="Door (E/W)" Direction="E" />
+      <Door Number="91" Page="98" Name="Door (N/S)" Direction ="N" />
+      <Door Number="92" Page="104" Name="Door (Gold Key - E/W)" Direction="E" Lock="Gold Key" />
+      <Door Number="93" Page="105" Name="Door (Gold Key - N/S)" Direction="N" Lock="Gold Key" />
+      <Door Number="94" Page="104" Name="Door (Silver Key - E/W)" Direction="E" Lock="Silver Key" />
+      <Door Number="95" Page="105" Name="Door (Silver Key - N/S)" Direction="N" Lock="Silver Key" />
+      <Door Number="100" Page="103" Name="Elevator Door (E/W)" Direction ="E" />
+      <Door Number="101" Page="102" Name="Elevator Door (N/S)" Direction="N" />
+      <Special Number="106" Walk="true" Name="Deaf Guard" />
+      <Exit Number="107" Name="Elevator to Secret Floor" />
+      <Exit Number="108" Name="Floor 6C" />
+      <Exit Number="109" Name="Floor 6D" />
+      <Exit Number="110" Name="Floor 6E" />
+      <Exit Number="111" Name="Floor 6F" />
+      <Exit Number="112" Name="Floor 70" />
+      <Exit Number="113" Name="Floor 71" />
+      <Exit Number="114" Name="Floor 72" />
+      <Exit Number="115" Name="Floor 73" />
+      <Exit Number="116" Name="Floor 74" />
+      <Exit Number="117" Name="Floor 75" />
+      <Exit Number="118" Name="Floor 76" />
+      <Exit Number="119" Name="Floor 77" />
+      <Exit Number="120" Name="Floor 78" />
+      <Exit Number="121" Name="Floor 79" />
+      <Exit Number="122" Name="Floor 7A" />
+      <Exit Number="123" Name="Floor 7B" />
+      <Exit Number="124" Name="Floor 7C" />
+      <Exit Number="125" Name="Floor 7D" />
+      <Exit Number="126" Name="Floor 7E" />
+      <Exit Number="127" Name="Floor 7F" />
+      <Exit Number="128" Name="Floor 80" />
+      <Exit Number="129" Name="Floor 81" />
+      <Exit Number="130" Name="Floor 82" />
+      <Exit Number="131" Name="Floor 83" />
+      <Exit Number="132" Name="Floor 84" />
+      <Exit Number="133" Name="Floor 85" />
+      <Exit Number="134" Name="Floor 86" />
+      <Exit Number="135" Name="Floor 87" />
+      <Exit Number="136" Name="Floor 88" />
+      <Exit Number="137" Name="Floor 89" />
+      <Exit Number="138" Name="Floor 8A" />
+      <Exit Number="139" Name="Floor 8B" />
+      <Exit Number="140" Name="Floor 8C" />
+      <Exit Number="141" Name="Floor 8D" />
+      <Exit Number="142" Name="Floor 8E" />
+      <Exit Number="143" Name="Floor 8F" />
+    </Walls>
+    <Sprite Page="106" Name="Demo" />
+    <Sprite Page="107" Name="DeathCam" />
+    <Objects>
+      <Spawn Number="19" Walk="true" Name="Start" />
+      <Spawn Number="20" Walk="true" Name="Start" />
+      <Spawn Number="21" Walk="true" Name="Start" />
+      <Spawn Number="22" Walk="true" Name="Start" />
+      <Billboard Number="23" Page="108" Walk="true" Name="Pool of Water" />
+      <Billboard Number="24" Page="109" Name="Oil Drum" />
+      <Billboard Number="25" Page="110" Name="Table with Chairs" />
+      <Billboard Number="26" Page="111" Name="Floor Lamp" />
+      <Billboard Number="27" Page="112" Walk="true" Name="Chandalier" />
+      <Billboard Number="28" Page="113" Name="Hanging Skeleton" />
+      <Billboard Number="29" Page="114" Walk="true" Pickup="true" Health="4" Name="Dog Food" />
+      <Billboard Number="30" Page="115" Name="White Column" />
+      <Billboard Number="31" Page="116" Name="Green Plant" />
+      <Billboard Number="32" Page="117" Walk="true" Name="Skeleton" />
+      <Billboard Number="33" Page="118" Name="Sink" />
+      <Billboard Number="34" Page="119" Name="Brown Plant" />
+      <Billboard Number="35" Page="120" Name="Vase" />
+      <Billboard Number="36" Page="121" Name="Table" />
+      <Billboard Number="37" Page="122" Walk="true" Name="Ceiling Light" />
+      <Billboard Number="38" Page="123" Walk="true" Name="Utensils (Brown)" />
+      <Billboard Number="39" Page="124" Name="Armor" />
+      <Billboard Number="40" Page="125" Name="Empty Cage" />
+      <Billboard Number="41" Page="126" Name="Cage with Skeleton" />
+      <Billboard Number="42" Page="127" Walk="true" Name="Bones 1" />
+      <Billboard Number="43" Page="128" Walk="true" Pickup="true" Inventory="true" Name="Gold Key" />
+      <Billboard Number="44" Page="129" Walk="true" Pickup="true" Inventory="true" Name="Silver Key" />
+      <Billboard Number="45" Page="130" Name="Bed" />
+      <Billboard Number="46" Page="131" Walk="true" Name="Basket" />
+      <Billboard Number="47" Page="132" Walk="true" Pickup="true" Health="10" Name="Food" />
+      <Billboard Number="48" Page="133" Walk="true" Pickup="true" Health="25" Name="First Aid Kit" />
+      <Billboard Number="49" Page="134" Walk="true" Pickup="true" Ammo="8" Name="Ammo" />
+      <Billboard Number="50" Page="135" Walk="true" Pickup="true" Ammo="6" Inventory="true" Name="Machine Gun" />
+      <Billboard Number="51" Page="136" Walk="true" Pickup="true" Ammo="6" Inventory="true" Name="Gatling Gun" />
+      <Billboard Number="52" Page="137" Walk="true" Pickup="true" Points="100" Name="Cross" />
+      <Billboard Number="53" Page="138" Walk="true" Pickup="true" Points="500" Name="Chalice" />
+      <Billboard Number="54" Page="139" Walk="true" Pickup="true" Points="1000" Name="Chest of Jewels" />
+      <Billboard Number="55" Page="140" Walk="true" Pickup="true" Points="5000" Name="Crown" />
+      <Billboard Number="56" Page="141" Walk="true" Pickup="true" Ammo="25" Health="100" Lives="1" Name="Extra Life" />
+      <Billboard Number="57" Page="142" Walk="true" Name="Bones with Blood" />
+      <Billboard Number="58" Page="143" Name="Barrel" />
+      <Billboard Number="59" Page="144" Name="Well with Water" />
+      <Billboard Number="60" Page="145" Name="Well" />
+      <Billboard Number="61" Page="146" Walk="true" Name="Pool of Blood" />
+      <Billboard Number="62" Page="147" Name="Flag" />
+      <Billboard Number="63" Page="148" Name="Aardwolf" />
+      <Billboard Number="64" Page="149" Walk="true" Name="Bones 2" />
+      <Billboard Number="65" Page="150" Walk="true" Name="Bones 3" />
+      <Billboard Number="66" Page="151" Walk="true" Name="Bones 4" />
+      <Billboard Number="67" Page="152" Walk="true" Name="Utensils (Blue)" />
+      <Billboard Number="68" Page="153" Name="Stove" />
+      <Billboard Number="69" Page="154" Name="Rack" />
+      <Billboard Number="70" Page="155" Name="Vines" />
+      <Turn Number="90" Walk="true" Name="Turn" />
+      <Turn Number="91" Walk="true" Name="Turn" />
+      <Turn Number="92" Walk="true" Name="Turn" />
+      <Turn Number="93" Walk="true" Name="Turn" />
+      <Turn Number="94" Walk="true" Name="Turn" />
+      <Turn Number="95" Walk="true" Name="Turn" />
+      <Turn Number="96" Walk="true" Name="Turn" />
+      <Turn Number="97" Walk="true" Name="Turn" />
+      <Pushwall Number="98" Walk="true" Name="Secret Door" />
+      <Trigger Number="99" Walk="true" Name="End Game Trigger" />
+      <Enemy Number="108" Name="Guard 1 (Standing)" />
+      <Enemy Number="109" Name="Guard 1 (Standing)" />
+      <Enemy Number="110" Name="Guard 1 (Standing)" />
+      <Enemy Number="111" Name="Guard 1 (Standing)" />
+      <Enemy Number="112" Name="Guard 1 (Moving)" />
+      <Enemy Number="113" Name="Guard 1 (Moving)" />
+      <Enemy Number="114" Name="Guard 1 (Moving)" />
+      <Enemy Number="115" Name="Guard 1 (Moving)" />
+      <Billboard Number="124" Page="201" Walk="true" Name="Dead Guard" />
+      <Enemy Number="126" Name="SS 1 (Standing)" />
+      <Enemy Number="127" Name="SS 1 (Standing)" />
+      <Enemy Number="128" Name="SS 1 (Standing)" />
+      <Enemy Number="129" Name="SS 1 (Standing)" />
+      <Enemy Number="130" Name="SS 1 (Moving)" />
+      <Enemy Number="131" Name="SS 1 (Moving)" />
+      <Enemy Number="132" Name="SS 1 (Moving)" />
+      <Enemy Number="133" Name="SS 1 (Moving)" />
+      <Enemy Number="138" Name="Dog 1 (Moving)" />
+      <Enemy Number="139" Name="Dog 1 (Moving)" />
+      <Enemy Number="140" Name="Dog 1 (Moving)" />
+      <Enemy Number="141" Name="Dog 1 (Moving)" />
+      <Enemy Number="144" Name="Guard 3 (Standing)" />
+      <Enemy Number="145" Name="Guard 3 (Standing)" />
+      <Enemy Number="146" Name="Guard 3 (Standing)" />
+      <Enemy Number="147" Name="Guard 3 (Standing)" />
+      <Enemy Number="148" Name="Guard 3 (Moving)" />
+      <Enemy Number="149" Name="Guard 3 (Moving)" />
+      <Enemy Number="150" Name="Guard 3 (Moving)" />
+      <Enemy Number="151" Name="Guard 3 (Moving)" />
+      <Enemy Number="162" Name="SS 3 (Standing)" />
+      <Enemy Number="163" Name="SS 3 (Standing)" />
+      <Enemy Number="164" Name="SS 3 (Standing)" />
+      <Enemy Number="165" Name="SS 3 (Standing)" />
+      <Enemy Number="166" Name="SS 3 (Moving)" />
+      <Enemy Number="167" Name="SS 3 (Moving)" />
+      <Enemy Number="168" Name="SS 3 (Moving)" />
+      <Enemy Number="169" Name="SS 3 (Moving)" />
+      <Enemy Number="174" Name="Dog 3 (Moving)" />
+      <Enemy Number="175" Name="Dog 3 (Moving)" />
+      <Enemy Number="176" Name="Dog 3 (Moving)" />
+      <Enemy Number="177" Name="Dog 3 (Moving)" />
+      <Enemy Number="180" Name="Guard 4 (Standing)" />
+      <Enemy Number="181" Name="Guard 4 (Standing)" />
+      <Enemy Number="182" Name="Guard 4 (Standing)" />
+      <Enemy Number="183" Name="Guard 4 (Standing)" />
+      <Enemy Number="183" Name="Guard 4 (Moving)" />
+      <Enemy Number="183" Name="Guard 4 (Moving)" />
+      <Enemy Number="183" Name="Guard 4 (Moving)" />
+      <Enemy Number="183" Name="Guard 4 (Moving)" />
+      <Enemy Number="198" Name="SS 4 (Standing)" />
+      <Enemy Number="199" Name="SS 4 (Standing)" />
+      <Enemy Number="200" Name="SS 4 (Standing)" />
+      <Enemy Number="201" Name="SS 4 (Standing)" />
+      <Enemy Number="202" Name="SS 4 (Moving)" />
+      <Enemy Number="203" Name="SS 4 (Moving)" />
+      <Enemy Number="204" Name="SS 4 (Moving)" />
+      <Enemy Number="205" Name="SS 4 (Moving)" />
+      <Enemy Number="210" Name="Dog 4 (Moving)" />
+      <Enemy Number="211" Name="Dog 4 (Moving)" />
+      <Enemy Number="212" Name="Dog 4 (Moving)" />
+      <Enemy Number="213" Name="Dog 4 (Moving)" />
+      <Enemy Number="214" Name="Hans" />
+    </Objects>
+    <DigiSound Number="0" Name="HALTSND" />
+    <DigiSound Number="1" Name="DOGBARKSND" />
+    <DigiSound Number="2" Name="CLOSEDOORSND" />
+    <DigiSound Number="3" Name="OPENDOORSND" />
+    <DigiSound Number="4" Name="ATKMACHINEGUNSND" />
+    <DigiSound Number="5" Name="ATKPISTOLSND" />
+    <DigiSound Number="6" Name="ATKGATLINGSND" />
+    <DigiSound Number="7" Name="SCHUTZADSND" />
+    <DigiSound Number="8" Name="GUTENTAGSND" />
+    <DigiSound Number="9" Name="MUTTISND" />
+    <DigiSound Number="10" Name="BOSSFIRESND" />
+    <DigiSound Number="11" Name="SSFIRESND" />
+    <DigiSound Number="12" Name="DEATHSCREAM1SND" />
+    <DigiSound Number="13" Name="DEATHSCREAM2SND" />
+    <DigiSound Number="13" Name="DEATHSCREAM3SND" />
+    <DigiSound Number="14" Name="TAKEDAMAGESND" />
+    <DigiSound Number="15" Name="PUSHWALLSND" />
+    <DigiSound Number="20" Name="LEBENSND" />
+    <DigiSound Number="21" Name="NAZIFIRESND" />
+    <DigiSound Number="22" Name="SLURPIESND" />
+    <DigiSound Number="32" Name="YEAHSND" />
+  </VSwap>
+  <Palette>
+    JASC-PAL
+    0100
+    256
+    0 0 0
+    0 0 168
+    0 168 0
+    0 168 168
+    168 0 0
+    168 0 168
+    168 84 0
+    168 168 168
+    84 84 84
+    84 84 252
+    84 252 84
+    84 252 252
+    252 84 84
+    252 84 252
+    252 252 84
+    252 252 252
+    236 236 236
+    220 220 220
+    208 208 208
+    192 192 192
+    180 180 180
+    168 168 168
+    152 152 152
+    140 140 140
+    124 124 124
+    112 112 112
+    100 100 100
+    84 84 84
+    72 72 72
+    56 56 56
+    44 44 44
+    32 32 32
+    252 0 0
+    236 0 0
+    224 0 0
+    212 0 0
+    200 0 0
+    188 0 0
+    176 0 0
+    164 0 0
+    152 0 0
+    136 0 0
+    124 0 0
+    112 0 0
+    100 0 0
+    88 0 0
+    76 0 0
+    64 0 0
+    252 216 216
+    252 184 184
+    252 156 156
+    252 124 124
+    252 92 92
+    252 64 64
+    252 32 32
+    252 0 0
+    252 168 92
+    252 152 64
+    252 136 32
+    252 120 0
+    228 108 0
+    204 96 0
+    180 84 0
+    156 76 0
+    252 252 216
+    252 252 184
+    252 252 156
+    252 252 124
+    252 248 92
+    252 244 64
+    252 244 32
+    252 244 0
+    228 216 0
+    204 196 0
+    180 172 0
+    156 156 0
+    132 132 0
+    112 108 0
+    88 84 0
+    64 64 0
+    208 252 92
+    196 252 64
+    180 252 32
+    160 252 0
+    144 228 0
+    128 204 0
+    116 180 0
+    96 156 0
+    216 252 216
+    188 252 184
+    156 252 156
+    128 252 124
+    96 252 92
+    64 252 64
+    32 252 32
+    0 252 0
+    0 252 0
+    0 236 0
+    0 224 0
+    0 212 0
+    4 200 0
+    4 188 0
+    4 176 0
+    4 164 0
+    4 152 0
+    4 136 0
+    4 124 0
+    4 112 0
+    4 100 0
+    4 88 0
+    4 76 0
+    4 64 0
+    216 252 252
+    184 252 252
+    156 252 252
+    124 252 248
+    92 252 252
+    64 252 252
+    32 252 252
+    0 252 252
+    0 228 228
+    0 204 204
+    0 180 180
+    0 156 156
+    0 132 132
+    0 112 112
+    0 88 88
+    0 64 64
+    92 188 252
+    64 176 252
+    32 168 252
+    0 156 252
+    0 140 228
+    0 124 204
+    0 108 180
+    0 92 156
+    216 216 252
+    184 188 252
+    156 156 252
+    124 128 252
+    92 96 252
+    64 64 252
+    32 36 252
+    0 4 252
+    0 0 252
+    0 0 236
+    0 0 224
+    0 0 212
+    0 0 200
+    0 0 188
+    0 0 176
+    0 0 164
+    0 0 152
+    0 0 136
+    0 0 124
+    0 0 112
+    0 0 100
+    0 0 88
+    0 0 76
+    0 0 64
+    40 40 40
+    252 224 52
+    252 212 36
+    252 204 24
+    252 192 8
+    252 180 0
+    180 32 252
+    168 0 252
+    152 0 228
+    128 0 204
+    116 0 180
+    96 0 156
+    80 0 132
+    68 0 112
+    52 0 88
+    40 0 64
+    252 216 252
+    252 184 252
+    252 156 252
+    252 124 252
+    252 92 252
+    252 64 252
+    252 32 252
+    252 0 252
+    224 0 228
+    200 0 204
+    180 0 180
+    156 0 156
+    132 0 132
+    108 0 112
+    88 0 88
+    64 0 64
+    252 232 220
+    252 224 208
+    252 216 196
+    252 212 188
+    252 204 176
+    252 196 164
+    252 188 156
+    252 184 144
+    252 176 128
+    252 164 112
+    252 156 96
+    240 148 92
+    232 140 88
+    220 136 84
+    208 128 80
+    200 124 76
+    188 120 72
+    180 112 68
+    168 104 64
+    160 100 60
+    156 96 56
+    144 92 52
+    136 88 48
+    128 80 44
+    116 76 40
+    108 72 36
+    92 64 32
+    84 60 28
+    72 56 24
+    64 48 24
+    56 44 20
+    40 32 12
+    96 0 100
+    0 100 100
+    0 96 96
+    0 0 28
+    0 0 44
+    48 36 16
+    72 0 72
+    80 0 80
+    0 0 52
+    28 28 28
+    76 76 76
+    92 92 92
+    64 64 64
+    48 48 48
+    52 52 52
+    216 244 244
+    184 232 232
+    156 220 220
+    116 200 200
+    72 192 192
+    32 180 180
+    32 176 176
+    0 164 164
+    0 152 152
+    0 140 140
+    0 132 132
+    0 124 124
+    0 120 120
+    0 116 116
+    0 112 112
+    0 108 108
+    152 0 136
+  </Palette>
+</Game>
