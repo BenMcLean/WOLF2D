@@ -42,12 +42,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GodotSharp">
-      <HintPath>$(ProjectDir)\.mono\assemblies\$(ApiConfiguration)\GodotSharp.dll</HintPath>
       <Private>False</Private>
+      <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharp.dll</HintPath>
     </Reference>
     <Reference Include="GodotSharpEditor" Condition=" '$(Configuration)' == 'Tools' ">
-      <HintPath>$(ProjectDir)\.mono\assemblies\$(ApiConfiguration)\GodotSharpEditor.dll</HintPath>
       <Private>False</Private>
+      <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharpEditor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -79,6 +79,7 @@
     <Compile Include="WarpWriter\View\Color\IVoxelColor.cs" />
     <Compile Include="WarpWriter\View\Color\PaletteReducer.cs" />
     <Compile Include="WarpWriter\View\Color\ShadedVoxelColor.cs" />
+    <Compile Include="WarpWriter\View\IsoFlatDraw.cs" />
     <Compile Include="WarpWriter\View\PixelCubeDraw.cs" />
     <Compile Include="WarpWriter\View\Render\ByteArrayRenderer.cs" />
     <Compile Include="WarpWriter\View\Render\IRectangleRenderer.cs" />

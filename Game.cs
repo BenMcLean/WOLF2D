@@ -1,23 +1,34 @@
 using Godot;
-using System;
+using NScumm.Audio.OPL.Woody;
+using OPL;
+using WOLF3D;
 
 public class Game : Node2D
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
+    public static string Folder = "WOLF3D";
+    public static Assets Assets;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        Label label = new Label()
+        DownloadShareware.Main(new string[] { Folder });
+        Assets = new Assets(Folder);
+        AddChild(Assets.OplPlayer = new OplPlayer()
+        {
+            Opl = new WoodyEmulatorOpl(NScumm.Core.Audio.OPL.OplType.Opl3)
+        });
+
+        AddChild(new Label()
         {
             Text = "Hello World!",
-        };
-        AddChild(label);
+        });
+
+        AddChild(new Sprite()
+        {
+            Texture = Assets.Textures[0],
+            GlobalPosition = new Vector2(200, 200),
+        });
     }
 
-    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     //  public override void _Process(float delta)
     //  {
     //      
