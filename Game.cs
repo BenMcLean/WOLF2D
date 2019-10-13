@@ -47,17 +47,17 @@ public class Game : Node2D
             },
         };
 
-        for (int x = 0; x < 64; x++)
-            for (int y = 0; y < 64; y++)
-            {
-                uint color = palette[
-                    WarpWriterFriendly(
+        byte[][] indexes = new byte[64][];
+        for (int x = 0; x < indexes.Length; x++)
+        {
+            indexes[x] = new byte[indexes.Length];
+            for (int y = 0; y < indexes[x].Length; y++)
+                indexes[x][y] = WarpWriterFriendly(
                         Assets.VSwap.Indexes[wallIndex][(63 - y) * 64 + x]
-                    )
-                ];
-                renderer.Rect(x * 2, x + y * 2, 1, 2, color);
-                renderer.Rect(x * 2 + 1, x + y * 2 + 1, 1, 2, color);
-            }
+                    );
+        }
+
+        IsoSlantUp(indexes, palette, renderer);
 
         Godot.Image image = new Image();
         image.CreateFromData((int)renderer.Width, (int)renderer.Height, false, Image.Format.Rgba8, renderer.Bytes);
@@ -70,6 +70,17 @@ public class Game : Node2D
             GlobalPosition = new Vector2(600, 250),
             Scale = new Vector2(2, 2),
         });
+    }
+
+    public static void IsoSlantUp<T>(byte[][] indexes, uint[] palette, T renderer) where T : IRectangleRenderer<T>
+    {
+        for (int x = 0; x < indexes.Length; x++)
+            for (int y = 0; y < indexes[x].Length; y++)
+            {
+                uint color = palette[indexes[x][y]];
+                renderer.Rect(x * 2, x + y * 2, 1, 2, color);
+                renderer.Rect(x * 2 + 1, x + y * 2 + 1, 1, 2, color);
+            }
     }
 
     public static uint[] WarpWriterFriendlyPalette(uint[] palette)
