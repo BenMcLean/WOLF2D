@@ -32,7 +32,7 @@ public class Game : Node2D
 
         AddChild(new Sprite()
         {
-            Texture = Assets.IsoSlantUp[wall + 1],
+            Texture = Assets.IsoSlantUp[wall],
             Position = new Vector2(offsetX, offsetY),
         });
         AddChild(new Sprite()
@@ -42,8 +42,15 @@ public class Game : Node2D
         });
         AddChild(new Sprite()
         {
-            Texture = Assets.IsoSlantDown[wall],
+            Texture = Assets.IsoSlantDown[wall + 1],
             Position = new Vector2(offsetX + 128, offsetY),
+        });
+
+        AddChild(new Sprite()
+        {
+            Texture = Assets.Textures[202],
+            Position = new Vector2(offsetX + 68, offsetY + 32),
+            Scale = new Vector2(2, 2),
         });
     }
 
