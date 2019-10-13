@@ -68,7 +68,7 @@ namespace WOLF3D
                         Godot.Image image = new Image();
                         image.CreateFromData(64, 64, false, Image.Format.Rgba8, VSwap.Pages[i]);
                         Textures[i] = new ImageTexture();
-                        Textures[i].CreateFromImage(image, (int)Texture.FlagsEnum.Default);
+                        Textures[i].CreateFromImage(image, 0);
                     }
             }
         }
