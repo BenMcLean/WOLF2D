@@ -26,7 +26,7 @@ public class Game : Node2D
         {
             Texture = Assets.Textures[0],
             GlobalPosition = new Vector2(200, 200),
-            Scale = new Vector2(6, 6),
+            Scale = new Vector2(6, 6)
         });
     }
 
