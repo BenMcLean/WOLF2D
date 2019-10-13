@@ -28,7 +28,7 @@ namespace WarpWriter.View.Color
                 Reducer.ReduceIndex(0xFF000000), Reducer.ReduceIndex(0xFF444444), Reducer.ReduceIndex(0xFF888888),
                 Reducer.ReduceIndex(0xFFCCCCCC), Reducer.ReduceIndex(0xFFFFFFFF)
             };
-            int THRESHOLD = 64;//0.011; // threshold controls the "stark-ness" of color changes; must not be negative.
+            //int THRESHOLD = 64;//0.011; // threshold controls the "stark-ness" of color changes; must not be negative.
             byte[] paletteMapping = new byte[1 << 16];
             uint[] reverse = new uint[Count];
             Ramps = BasicTools.Fill((byte)0, Count, 4);
@@ -79,8 +79,9 @@ namespace WarpWriter.View.Color
                 }
             }
 
-            float adj, cwf, cmf;
-            int idx2;
+            //float adj; 
+            float cwf, cmf;
+            //int idx2;
             for (int i = 1; i < Count; i++)
             {
                 uint rev = reverse[i];
@@ -132,7 +133,7 @@ namespace WarpWriter.View.Color
                                 BasicTools.Clamp(b, 0, 255) << 16) | 0xFF000000U;
 
                 //Console.WriteLine("{0:D}:{1:X8},{2:X8},{3:X8},{4:X8}", i, Values[i][0], Values[i][1], Values[i][2], Values[i][3]);
-                
+
                 //// This seems like a much simpler approach than the large comment below it.
                 //// The downside is that in some small palettes, the lighter or darker variants may be the same as the original, or both
                 //// darker variants could be the same.
@@ -221,7 +222,7 @@ namespace WarpWriter.View.Color
         {
             return Grays;
         }
-        
+
         public byte Brighten(byte voxel)
         {
             return Ramps[voxel % Count][3];
