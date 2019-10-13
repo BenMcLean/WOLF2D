@@ -2,6 +2,9 @@
 using OPL;
 using System.IO;
 using System.Xml.Linq;
+using WarpWriter.View.Color;
+using WarpWriter.View.Render;
+using WarpWriter.WarpWriter.View;
 
 namespace WOLF3D
 {
@@ -70,6 +73,51 @@ namespace WOLF3D
                         Textures[i] = new ImageTexture();
                         Textures[i].CreateFromImage(image, 0);
                     }
+
+                // Creating slopes
+                uint[] palette = WarpWriterFriendlyPalette(VSwap.Palette);
+                IVoxelColor color = new FlatVoxelColor()
+                {
+                    Palette = palette,
+                };
+
+                ByteArrayRenderer newSlopeRenderer()
+                {
+                    return new ByteArrayRenderer()
+                    {
+                        Width = 128,
+                        Height = 256,
+                        Color = color,
+                    };
+                }
+
+                IsoSlantUp = new ImageTexture[VSwap.SpritePage];
+                IsoSlantDown = new ImageTexture[VSwap.SpritePage];
+                for (uint wall = 0; wall < VSwap.SpritePage; wall++)
+                    if (VSwap.Indexes[wall] != null)
+                    {
+                        byte[][] indexes = new byte[64][];
+                        for (int x = 0; x < indexes.Length; x++)
+                        {
+                            indexes[x] = new byte[indexes.Length];
+                            for (int y = 0; y < indexes[x].Length; y++)
+                                indexes[x][y] = WarpWriterFriendly(
+                                        VSwap.Indexes[wall][(63 - y) * 64 + x]
+                                    );
+                        }
+                        ByteArrayRenderer renderer = newSlopeRenderer();
+                        renderer.IsoSlantUp(indexes, palette);
+                        Godot.Image image = new Image();
+                        image.CreateFromData((int)renderer.Width, (int)renderer.Height, false, Image.Format.Rgba8, renderer.Bytes);
+                        IsoSlantUp[wall] = new ImageTexture();
+                        IsoSlantUp[wall].CreateFromImage(image, 0);
+                        renderer = newSlopeRenderer();
+                        renderer.IsoSlantDown(indexes, palette);
+                        image = new Image();
+                        image.CreateFromData((int)renderer.Width, (int)renderer.Height, false, Image.Format.Rgba8, renderer.Bytes);
+                        IsoSlantDown[wall] = new ImageTexture();
+                        IsoSlantDown[wall].CreateFromImage(image, 0);
+                    }
             }
         }
         private VSwap vswap;
@@ -98,5 +146,26 @@ namespace WOLF3D
 
         public ImageTexture[] Textures;
         public ImageTexture[] Pics;
+        public ImageTexture[] IsoSlantUp;
+        public ImageTexture[] IsoSlantDown;
+
+        public static uint[] WarpWriterFriendlyPalette(uint[] palette)
+        {
+            uint[] friendly = new uint[256];
+            for (uint i = 0; i < 256; i++)
+                friendly[WarpWriterFriendly((byte)i)] = ReverseBytes(palette[i]);
+            return friendly;
+        }
+
+        public static byte WarpWriterFriendly(byte unfriendly)
+        {
+            return (byte)(unfriendly - 1);
+        }
+
+        public static uint ReverseBytes(uint value)
+        {
+            return (value & 0x000000FFU) << 24 | (value & 0x0000FF00U) << 8 |
+                (value & 0x00FF0000U) >> 8 | (value & 0xFF000000U) >> 24;
+        }
     }
 }
