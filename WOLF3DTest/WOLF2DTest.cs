@@ -7,7 +7,7 @@ using WOLF3D;
 namespace WOLF3DTest
 {
     [TestClass]
-    public class WOLF3DTest
+    public class WOLF2DTest
     {
         public static readonly string Folder = @"..\..\..\WOLF3D\";
         public static readonly XElement XML = Assets.LoadXML(Folder);
