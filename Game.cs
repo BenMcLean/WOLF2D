@@ -24,13 +24,17 @@ public class Game : Node2D
         {
             Text = "Hello World!",
         });
+
+        uint wallIndex = 18;
+
         AddChild(new Sprite()
         {
-            Texture = Assets.Textures[0],
+            Texture = Assets.Textures[wallIndex],
             GlobalPosition = new Vector2(200, 200),
             Scale = new Vector2(6, 6),
         });
 
+        uint[] palette = WarpWriterFriendlyPalette(Assets.VSwap.Palette);
 
         ByteArrayRenderer renderer = new ByteArrayRenderer()
         {
@@ -38,16 +42,18 @@ public class Game : Node2D
             Height = 64,
             Color = new FlatVoxelColor()
             {
-                Palette = WarpWriterFriendlyPalette(Assets.VSwap.Palette),
+                Palette = palette,
             },
         };
-        uint wallIndex = 0;
+
         for (uint x = 0; x < 64; x++)
             for (uint y = 0; y < 64; y++)
                 renderer.Rect((int)x, (int)y, 1, 1,
-                    WarpWriterFriendly(
+                    palette[
+                        WarpWriterFriendly(
                     Assets.VSwap.Indexes[wallIndex][(63 - y) * 64 + x]
                     )
+                    ]
                     );
 
         Godot.Image image = new Image();
@@ -67,7 +73,7 @@ public class Game : Node2D
     {
         uint[] friendly = new uint[256];
         for (uint i = 0; i < 256; i++)
-            friendly[i] = ReverseBytes(palette[WarpWriterFriendly((byte)i)]);
+            friendly[WarpWriterFriendly((byte)i)] = ReverseBytes(palette[i]);
         return friendly;
     }
 
