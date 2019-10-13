@@ -27,25 +27,29 @@ public class Game : Node2D
 
         uint wallIndex = 18;
 
-        AddChild(new Sprite()
-        {
-            Texture = Assets.Textures[wallIndex],
-            GlobalPosition = new Vector2(200, 250),
-            Scale = new Vector2(6, 6),
-        });
+        //AddChild(new Sprite()
+        //{
+        //    Texture = Assets.Textures[wallIndex],
+        //    GlobalPosition = new Vector2(200, 250),
+        //    Scale = new Vector2(6, 6),
+        //});
 
         uint[] palette = WarpWriterFriendlyPalette(Assets.VSwap.Palette);
 
         ByteArrayRenderer renderer = new ByteArrayRenderer()
         {
-            Width = 128,
-            Height = 192,
-            //ScaleX = 2,
+            Width = 512,
+            Height = 256,
+            ScaleX = 2,
             Color = new FlatVoxelColor()
             {
                 Palette = palette,
             },
         };
+
+        for (int x = 0; x < renderer.Width; x++)
+            for (int y = 0; y < renderer.Height; y++)
+                renderer.DrawPixel(x, y, palette[16]);
 
         byte[][] indexes = new byte[64][];
         for (int x = 0; x < indexes.Length; x++)
@@ -57,7 +61,7 @@ public class Game : Node2D
                     );
         }
 
-        IsoSlantDown(indexes, palette, renderer);
+        IsoTile(indexes, palette, renderer);
 
         Godot.Image image = new Image();
         image.CreateFromData((int)renderer.Width, (int)renderer.Height, false, Image.Format.Rgba8, renderer.Bytes);
@@ -67,9 +71,31 @@ public class Game : Node2D
         AddChild(new Sprite()
         {
             Texture = it,
-            GlobalPosition = new Vector2(600, 250),
-            //Scale = new Vector2(2, 2),
+            Position = new Vector2(700, 200),
+            //Scale = new Vector2(6, 6),
         });
+    }
+
+    public static void IsoTile<T>(byte[][] indexes, uint[] palette, T renderer) where T : ITriangleRenderer<T>
+    {
+        //Cartesian to isometric:
+        //isoX = cartX - cartY;
+        //isoY = (cartX + cartY) / 2;
+        int xOffset = indexes.Length + indexes[0].Length - 2;
+        for (int x = 0; x < indexes.Length; x++)
+            for (int y = 0; y < indexes[x].Length; y++)
+                Diamond(
+                    xOffset + (x - y) * 2,
+                    (x + y) * 2,
+                    palette[indexes[x][y]],
+                    renderer
+                    );
+    }
+
+    public static void Diamond<T>(int x, int y, uint color, T renderer) where T : ITriangleRenderer<T>
+    {
+        renderer.DrawLeftTriangle(x, y, color)
+                .DrawRightTriangle(x + 2, y, color);
     }
 
     public static void IsoSlantUp<T>(byte[][] indexes, uint[] palette, T renderer) where T : IRectangleRenderer<T>
