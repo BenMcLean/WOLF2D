@@ -55,6 +55,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game.cs" />
     <Compile Include="Model\Assets.cs" />
     <Compile Include="Model\AudioT.cs" />
     <Compile Include="Model\DownloadShareware.cs" />
