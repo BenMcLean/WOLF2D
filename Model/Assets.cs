@@ -86,13 +86,24 @@ namespace WOLF3D
                     return new ByteArrayRenderer()
                     {
                         Width = 128,
-                        Height = 256,
+                        Height = 192,
+                        Color = color,
+                    };
+                }
+
+                ByteArrayRenderer newDiamondRenderer()
+                {
+                    return new ByteArrayRenderer()
+                    {
+                        Width = 254,
+                        Height = 128,
                         Color = color,
                     };
                 }
 
                 IsoSlantUp = new ImageTexture[VSwap.SpritePage];
                 IsoSlantDown = new ImageTexture[VSwap.SpritePage];
+                IsoTile = new ImageTexture[VSwap.SpritePage];
                 for (uint wall = 0; wall < VSwap.SpritePage; wall++)
                     if (VSwap.Indexes[wall] != null)
                     {
@@ -106,17 +117,32 @@ namespace WOLF3D
                                     );
                         }
                         ByteArrayRenderer renderer = newSlopeRenderer();
+                        //for (int x = 0; x < renderer.Width; x++)
+                        //    for (int y = 0; y < renderer.Height; y++)
+                        //        renderer.DrawPixel(x, y, palette[16]);
                         renderer.IsoSlantUp(indexes, palette);
                         Godot.Image image = new Image();
                         image.CreateFromData((int)renderer.Width, (int)renderer.Height, false, Image.Format.Rgba8, renderer.Bytes);
                         IsoSlantUp[wall] = new ImageTexture();
                         IsoSlantUp[wall].CreateFromImage(image, 0);
                         renderer = newSlopeRenderer();
+                        //for (int x = 0; x < renderer.Width; x++)
+                        //    for (int y = 0; y < renderer.Height; y++)
+                        //        renderer.DrawPixel(x, y, palette[16]);
                         renderer.IsoSlantDown(indexes, palette);
                         image = new Image();
                         image.CreateFromData((int)renderer.Width, (int)renderer.Height, false, Image.Format.Rgba8, renderer.Bytes);
                         IsoSlantDown[wall] = new ImageTexture();
                         IsoSlantDown[wall].CreateFromImage(image, 0);
+                        renderer = newDiamondRenderer();
+                        //for (int x = 0; x < renderer.Width; x++)
+                        //    for (int y = 0; y < renderer.Height; y++)
+                        //        renderer.DrawPixel(x, y, palette[16]);
+                        renderer.IsoTile(indexes, palette);
+                        image = new Image();
+                        image.CreateFromData((int)renderer.Width, (int)renderer.Height, false, Image.Format.Rgba8, renderer.Bytes);
+                        IsoTile[wall] = new ImageTexture();
+                        IsoTile[wall].CreateFromImage(image, 0);
                     }
             }
         }
@@ -146,6 +172,7 @@ namespace WOLF3D
 
         public ImageTexture[] Textures;
         public ImageTexture[] Pics;
+        public ImageTexture[] IsoTile;
         public ImageTexture[] IsoSlantUp;
         public ImageTexture[] IsoSlantDown;
 

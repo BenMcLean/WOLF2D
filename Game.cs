@@ -25,9 +25,26 @@ public class Game : Node2D
             Text = "Hello World!",
         });
 
-        //for (int x = 0; x < renderer.Width; x++)
-        //    for (int y = 0; y < renderer.Height; y++)
-        //        renderer.DrawPixel(x, y, palette[16]);
+        int wall = 0,
+            offsetX = 500,
+            offsetY = 200;
+
+
+        AddChild(new Sprite()
+        {
+            Texture = Assets.IsoSlantUp[wall + 1],
+            Position = new Vector2(offsetX, offsetY),
+        });
+        AddChild(new Sprite()
+        {
+            Texture = Assets.IsoTile[wall + 2],
+            Position = new Vector2(offsetX + 64, offsetY + 96),
+        });
+        AddChild(new Sprite()
+        {
+            Texture = Assets.IsoSlantDown[wall],
+            Position = new Vector2(offsetX + 128, offsetY),
+        });
     }
 
 
