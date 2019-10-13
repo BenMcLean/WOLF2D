@@ -30,7 +30,7 @@ public class Game : Node2D
         AddChild(new Sprite()
         {
             Texture = Assets.Textures[wallIndex],
-            GlobalPosition = new Vector2(200, 200),
+            GlobalPosition = new Vector2(200, 250),
             Scale = new Vector2(6, 6),
         });
 
@@ -38,23 +38,26 @@ public class Game : Node2D
 
         ByteArrayRenderer renderer = new ByteArrayRenderer()
         {
-            Width = 64,
-            Height = 64,
+            Width = 128,
+            Height = 192,
+            //ScaleX = 2,
             Color = new FlatVoxelColor()
             {
                 Palette = palette,
             },
         };
 
-        for (uint x = 0; x < 64; x++)
-            for (uint y = 0; y < 64; y++)
-                renderer.Rect((int)x, (int)y, 1, 1,
-                    palette[
-                        WarpWriterFriendly(
-                    Assets.VSwap.Indexes[wallIndex][(63 - y) * 64 + x]
+        for (int x = 0; x < 64; x++)
+            for (int y = 0; y < 64; y++)
+            {
+                uint color = palette[
+                    WarpWriterFriendly(
+                        Assets.VSwap.Indexes[wallIndex][(63 - y) * 64 + x]
                     )
-                    ]
-                    );
+                ];
+                renderer.Rect(x * 2, x + y * 2, 1, 2, color);
+                renderer.Rect(x * 2 + 1, x + y * 2 + 1, 1, 2, color);
+            }
 
         Godot.Image image = new Image();
         image.CreateFromData((int)renderer.Width, (int)renderer.Height, false, Image.Format.Rgba8, renderer.Bytes);
@@ -64,8 +67,8 @@ public class Game : Node2D
         AddChild(new Sprite()
         {
             Texture = it,
-            GlobalPosition = new Vector2(600, 200),
-            Scale = new Vector2(6, 6),
+            GlobalPosition = new Vector2(600, 250),
+            Scale = new Vector2(2, 2),
         });
     }
 
