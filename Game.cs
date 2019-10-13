@@ -38,9 +38,9 @@ public class Game : Node2D
 
         ByteArrayRenderer renderer = new ByteArrayRenderer()
         {
-            Width = 512,
-            Height = 256,
-            ScaleX = 2,
+            Width = 254,
+            Height = 128,
+            //ScaleX = 2,
             Color = new FlatVoxelColor()
             {
                 Palette = palette,
@@ -76,7 +76,7 @@ public class Game : Node2D
         });
     }
 
-    public static void IsoTile<T>(byte[][] indexes, uint[] palette, T renderer) where T : ITriangleRenderer<T>
+    public static void IsoTile<T>(byte[][] indexes, uint[] palette, T renderer) where T : IRectangleRenderer<T>
     {
         //Cartesian to isometric:
         //isoX = cartX - cartY;
@@ -84,18 +84,12 @@ public class Game : Node2D
         int xOffset = indexes.Length + indexes[0].Length - 2;
         for (int x = 0; x < indexes.Length; x++)
             for (int y = 0; y < indexes[x].Length; y++)
-                Diamond(
+                renderer.Rect(
                     xOffset + (x - y) * 2,
-                    (x + y) * 2,
-                    palette[indexes[x][y]],
-                    renderer
+                    (x + y),
+                    2, 2,
+                    palette[indexes[x][y]]
                     );
-    }
-
-    public static void Diamond<T>(int x, int y, uint color, T renderer) where T : ITriangleRenderer<T>
-    {
-        renderer.DrawLeftTriangle(x, y, color)
-                .DrawRightTriangle(x + 2, y, color);
     }
 
     public static void IsoSlantUp<T>(byte[][] indexes, uint[] palette, T renderer) where T : IRectangleRenderer<T>
