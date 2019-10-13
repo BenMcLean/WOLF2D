@@ -57,7 +57,7 @@ public class Game : Node2D
                     );
         }
 
-        IsoSlantUp(indexes, palette, renderer);
+        IsoSlantDown(indexes, palette, renderer);
 
         Godot.Image image = new Image();
         image.CreateFromData((int)renderer.Width, (int)renderer.Height, false, Image.Format.Rgba8, renderer.Bytes);
@@ -68,7 +68,7 @@ public class Game : Node2D
         {
             Texture = it,
             GlobalPosition = new Vector2(600, 250),
-            Scale = new Vector2(2, 2),
+            //Scale = new Vector2(2, 2),
         });
     }
 
@@ -76,10 +76,20 @@ public class Game : Node2D
     {
         for (int x = 0; x < indexes.Length; x++)
             for (int y = 0; y < indexes[x].Length; y++)
+                renderer.Rect(x * 2, x + y * 2, 1, 2, palette[indexes[x][y]])
+                        .Rect(x * 2 + 1, x + y * 2 + 1, 1, 2, palette[indexes[x][y]]);
+    }
+
+    public static void IsoSlantDown<T>(byte[][] indexes, uint[] palette, T renderer) where T : IRectangleRenderer<T>
+    {
+        int height = indexes.Length - 1 + (indexes[0].Length - 1) * 2;
+        for (int x = 0; x < indexes.Length; x++)
+            for (int y = 0; y < indexes[x].Length; y++)
             {
                 uint color = palette[indexes[x][y]];
-                renderer.Rect(x * 2, x + y * 2, 1, 2, color);
-                renderer.Rect(x * 2 + 1, x + y * 2 + 1, 1, 2, color);
+                int y2 = (indexes[x].Length - 1 - y) * 2;
+                renderer.Rect(x * 2, height - (x + y2), 1, 2, color)
+                        .Rect(x * 2 + 1, height - (x + y2) - 1, 1, 2, color);
             }
     }
 
