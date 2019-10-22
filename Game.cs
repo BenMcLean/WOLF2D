@@ -1,9 +1,6 @@
 using Godot;
 using NScumm.Audio.OPL.Woody;
 using OPL;
-using System;
-using WarpWriter.View.Color;
-using WarpWriter.View.Render;
 using WOLF3D;
 
 public class Game : Node2D
@@ -37,7 +34,7 @@ public class Game : Node2D
         });
         AddChild(new Sprite()
         {
-            Texture = Assets.IsoTile[wall + 2],
+            Texture = Assets.Floor,
             Position = new Vector2(offsetX + 64, offsetY + 96),
         });
         AddChild(new Sprite()

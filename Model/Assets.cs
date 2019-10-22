@@ -42,6 +42,29 @@ namespace WOLF3D
                 AudioT = AudioT.Load(folder, XML);
             if (XML.Element("VgaGraph") != null)
                 VgaGraph = VgaGraph.Load(folder, XML);
+
+            // Creating floor texture
+            uint[] palette = WarpWriterFriendlyPalette(VSwap.Palette);
+            ByteArrayRenderer renderer = new ByteArrayRenderer()
+            {
+                Width = 254,
+                Height = 128,
+                Color = new FlatVoxelColor()
+                {
+                    Palette = palette,
+                },
+            };
+            renderer.IsoTile(64, 64,
+                palette[
+                    WarpWriterFriendly(
+                        (byte)(int)XML.Element("Maps").Attribute("FloorIndex")
+                        )
+                    ]
+                );
+            Godot.Image image = new Image();
+            image.CreateFromData((int)renderer.Width, (int)renderer.Height, false, Image.Format.Rgba8, renderer.Bytes);
+            Floor = new ImageTexture();
+            Floor.CreateFromImage(image, 0);
         }
 
         public static XElement LoadXML(string folder, string file = "game.xml")
@@ -135,9 +158,9 @@ namespace WOLF3D
                         IsoSlantDown[wall] = new ImageTexture();
                         IsoSlantDown[wall].CreateFromImage(image, 0);
                         renderer = newDiamondRenderer();
-                        //for (int x = 0; x < renderer.Width; x++)
-                        //    for (int y = 0; y < renderer.Height; y++)
-                        //        renderer.DrawPixel(x, y, palette[16]);
+                        for (int x = 0; x < renderer.Width; x++)
+                            for (int y = 0; y < renderer.Height; y++)
+                                renderer.DrawPixel(x, y, palette[16]);
                         renderer.IsoTile(indexes, palette);
                         image = new Image();
                         image.CreateFromData((int)renderer.Width, (int)renderer.Height, false, Image.Format.Rgba8, renderer.Bytes);
@@ -175,6 +198,7 @@ namespace WOLF3D
         public ImageTexture[] IsoTile;
         public ImageTexture[] IsoSlantUp;
         public ImageTexture[] IsoSlantDown;
+        public ImageTexture Floor;
 
         public static uint[] WarpWriterFriendlyPalette(uint[] palette)
         {

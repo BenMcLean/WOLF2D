@@ -9,7 +9,11 @@ namespace WOLF3DTest
         [TestMethod]
         public void TestMethod1()
         {
-            //Assert.AreEqual(Game.WarpWriterFriendly(255), 0);
+            uint color = 0x1919;
+            Console.WriteLine("Red: " + (byte)(color >> 24));
+            Console.WriteLine("Green: " + (byte)(color >> 16));
+            Console.WriteLine("Blue: " + (byte)(color >> 8));
+            Console.WriteLine("Alpha: " + (byte)(color));
         }
     }
 }
