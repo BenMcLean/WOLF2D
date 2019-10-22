@@ -52,6 +52,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Camera2DFreeLook.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Model\Assets.cs" />
     <Compile Include="Model\AudioT.cs" />
