@@ -127,6 +127,8 @@ namespace WOLF3D
                 IsoSlantUp = new ImageTexture[VSwap.SpritePage];
                 IsoSlantDown = new ImageTexture[VSwap.SpritePage];
                 IsoTile = new ImageTexture[VSwap.SpritePage];
+                FarWalls = new TileSet();
+                NearWalls = new TileSet();
                 for (uint wall = 0; wall < VSwap.SpritePage; wall++)
                     if (VSwap.Indexes[wall] != null)
                     {
@@ -166,10 +168,29 @@ namespace WOLF3D
                         image.CreateFromData((int)renderer.Width, (int)renderer.Height, false, Image.Format.Rgba8, renderer.Bytes);
                         IsoTile[wall] = new ImageTexture();
                         IsoTile[wall].CreateFromImage(image, 0);
+
+                        FarWalls.CreateTile((int)wall);
+                        FarWalls.TileSetTexture((int)wall, IsoSlantUp[(int)wall]);
+                        FarWalls.TileSetTextureOffset((int)wall, IsoSlantUpFarWallOffset);
+                        FarWalls.CreateTile((int)wall + VSwap.SpritePage);
+                        FarWalls.TileSetTexture((int)wall + VSwap.SpritePage, IsoSlantDown[(int)wall]);
+                        FarWalls.TileSetTextureOffset((int)wall + VSwap.SpritePage, IsoSlantDownFarWallOffset);
+
+                        NearWalls.CreateTile((int)wall);
+                        NearWalls.TileSetTexture((int)wall, IsoSlantUp[(int)wall]);
+                        NearWalls.TileSetTextureOffset((int)wall, IsoSlantUpNearWallOffset);
+                        NearWalls.CreateTile((int)wall + VSwap.SpritePage);
+                        NearWalls.TileSetTexture((int)wall + VSwap.SpritePage, IsoSlantDown[(int)wall]);
+                        NearWalls.TileSetTextureOffset((int)wall + VSwap.SpritePage, IsoSlantDownNearWallOffset);
                     }
             }
         }
         private VSwap vswap;
+
+        private static readonly Vector2 IsoSlantUpFarWallOffset = new Vector2(128, -64);
+        private static readonly Vector2 IsoSlantDownFarWallOffset = new Vector2(0, -64);
+        private static readonly Vector2 IsoSlantUpNearWallOffset = new Vector2(0, -128);
+        private static readonly Vector2 IsoSlantDownNearWallOffset = new Vector2(128, -128);
 
         public VgaGraph VgaGraph
         {
@@ -193,13 +214,15 @@ namespace WOLF3D
         }
         private VgaGraph vgaGraph;
 
-        public uint backgroundColor { get; set; } = 255;
+        public uint BackgroundColor { get; set; } = 255;
         public ImageTexture[] Textures;
         public ImageTexture[] Pics;
         public ImageTexture[] IsoTile;
         public ImageTexture[] IsoSlantUp;
         public ImageTexture[] IsoSlantDown;
         public ImageTexture Floor;
+        public TileSet FarWalls;
+        public TileSet NearWalls;
 
         public static uint[] WarpWriterFriendlyPalette(uint[] palette)
         {
