@@ -17,44 +17,45 @@ public class Game : Node2D
             Opl = new WoodyEmulatorOpl(NScumm.Core.Audio.OPL.OplType.Opl3)
         });
 
-        AddChild(new Label()
-        {
-            Text = "Hello World!",
-        });
+        Vector2 isoSlantDownWallOffset = new Vector2(0, -64);
+        Vector2 isoSlantUpWallOffset = new Vector2(-128, -64);
 
-        int wall = 0,
-            offsetX = 500,
-            offsetY = 200;
+        TileSet tileSet = new TileSet();
+        for (int i = 0; i < Assets.VSwap.SpritePage; i++)
+        {
+            if (Assets.IsoSlantUp[i] != null)
+            {
+                tileSet.CreateTile(i);
+                tileSet.TileSetTexture(i, Assets.IsoSlantUp[i]);
+                tileSet.TileSetTextureOffset(i, isoSlantUpWallOffset);
+            }
+            if (Assets.IsoSlantDown[i] != null)
+            {
+                tileSet.CreateTile(i + Assets.VSwap.SpritePage);
+                tileSet.TileSetTexture(i + Assets.VSwap.SpritePage, Assets.IsoSlantDown[i]);
+                tileSet.TileSetTextureOffset(i + Assets.VSwap.SpritePage, isoSlantDownWallOffset);
+            }
+        }
+        int floorTile = Assets.VSwap.SpritePage * 2;
+        tileSet.CreateTile(floorTile);
+        tileSet.TileSetTexture(floorTile, Assets.Floor);
 
+        TileMap tileMap = new TileMap()
+        {
+            Mode = TileMap.ModeEnum.Isometric,
+            CellSize = new Vector2(254, 128),
+            CellYSort = true,
+            CellTileOrigin = TileMap.TileOrigin.BottomLeft,
+            TileSet = tileSet,
+            //CellHalfOffset = TileMap.HalfOffset.X,
+        };
 
-        AddChild(new Sprite()
+        for (int i = -10; i < 10; i++)
         {
-            Texture = Assets.IsoSlantUp[wall],
-            Position = new Vector2(offsetX, offsetY),
-        });
-        AddChild(new Sprite()
-        {
-            Texture = Assets.Floor,
-            Position = new Vector2(offsetX + 64, offsetY + 96),
-        });
-        AddChild(new Sprite()
-        {
-            Texture = Assets.IsoSlantDown[wall + 1],
-            Position = new Vector2(offsetX + 128, offsetY),
-        });
+            tileMap.SetCell(0, i, Assets.VSwap.SpritePage + 1);
+            tileMap.SetCell(i, 0, 0);
+        }
 
-        AddChild(new Sprite()
-        {
-            Texture = Assets.Textures[202],
-            Position = new Vector2(offsetX + 68, offsetY + 32),
-            Scale = new Vector2(2, 2),
-        });
+        AddChild(tileMap);
     }
-
-
-
-    //  public override void _Process(float delta)
-    //  {
-    //      
-    //  }
 }
