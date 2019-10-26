@@ -43,12 +43,20 @@ namespace WOLF2D.View
             {
                 map = value;
                 Floors.Clear();
+                FarWalls.Clear();
+                NearWalls.Clear();
                 for (uint x = 0; x < map.Width; x++)
                     for (uint z = 0; z < map.Depth; z++)
                         if (!IsWall(x, z))
+                        {
                             Floors.SetCell((int)x, (int)z, 0);
-                FarWalls.Clear();
-                NearWalls.Clear();
+                            if (x > 0)
+                            {
+                                XElement wall = XWall(map.GetMapData(x - 1, z));
+                                if (wall != null)
+                                    FarWalls.SetCell((int)x - 1, (int)z, (int)wall.Attribute("Page"));
+                            }
+                        }
             }
         }
 
