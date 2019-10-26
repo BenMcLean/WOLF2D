@@ -65,6 +65,10 @@ namespace WOLF3D
             image.CreateFromData((int)renderer.Width, (int)renderer.Height, false, Image.Format.Rgba8, renderer.Bytes);
             Floor = new ImageTexture();
             Floor.CreateFromImage(image, 0);
+
+            FloorTileSet = new TileSet();
+            FloorTileSet.CreateTile(0);
+            FloorTileSet.TileSetTexture(0, Floor);
         }
 
         public static XElement LoadXML(string folder, string file = "game.xml")
@@ -221,6 +225,7 @@ namespace WOLF3D
         public ImageTexture[] IsoSlantUp;
         public ImageTexture[] IsoSlantDown;
         public ImageTexture Floor;
+        public TileSet FloorTileSet;
         public TileSet FarWalls;
         public TileSet NearWalls;
 
