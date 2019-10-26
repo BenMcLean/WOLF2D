@@ -17,6 +17,8 @@ public class Game : Node2D
             Opl = new WoodyEmulatorOpl(NScumm.Core.Audio.OPL.OplType.Opl3)
         });
 
+        VisualServer.SetDefaultClearColor(new Color(Assets.backgroundColor));
+
         Vector2 isoSlantDownWallOffset = new Vector2(0, -64);
         Vector2 isoSlantUpWallOffset = new Vector2(-128, -64);
 

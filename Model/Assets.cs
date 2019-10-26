@@ -193,6 +193,7 @@ namespace WOLF3D
         }
         private VgaGraph vgaGraph;
 
+        public uint backgroundColor { get; set; } = 255;
         public ImageTexture[] Textures;
         public ImageTexture[] Pics;
         public ImageTexture[] IsoTile;
