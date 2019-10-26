@@ -61,6 +61,7 @@
     <Compile Include="Model\VgaGraph.cs" />
     <Compile Include="Model\VSwap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\MapWalls.cs" />
     <Compile Include="WarpWriter\Model\Decide\IDecide.cs" />
     <Compile Include="WarpWriter\Model\Extra\BasicTools.cs" />
     <Compile Include="WarpWriter\Model\Extra\RNG.cs" />

@@ -20,6 +20,21 @@ namespace WOLF3D
         public ushort[] ObjectData { get; set; }
         public ushort[] OtherData { get; set; }
 
+        public ushort GetMapData(uint x, uint z)
+        {
+            return MapData[x * Width + Depth - z - 1];
+        }
+
+        public ushort GetObjectData(uint x, uint z)
+        {
+            return ObjectData[x * Width + Depth - z - 1];
+        }
+
+        public ushort GetOtherData(uint x, uint z)
+        {
+            return OtherData[x * Width + Depth - z - 1];
+        }
+
         public ushort X(uint i)
         {
             return (ushort)(i / Width);
