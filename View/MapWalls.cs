@@ -5,13 +5,13 @@ using WOLF3D;
 
 namespace WOLF2D.View
 {
-    public class MapWalls : Node2D
+    public class MapWalls : YSort
     {
         public MapWalls()
         {
             AddChild(Floors);
-            AddChild(FarWalls);
-            AddChild(NearWalls);
+            //Floors.AddChild(FarWalls);
+            //FarWalls.AddChild(NearWalls);
         }
 
         private Assets assets;
@@ -26,8 +26,8 @@ namespace WOLF2D.View
             {
                 assets = value;
                 Floors.TileSet = assets.FloorTileSet;
-                FarWalls.TileSet = assets.FarWalls;
-                NearWalls.TileSet = assets.NearWalls;
+                //FarWalls.TileSet = assets.FarWalls;
+                //NearWalls.TileSet = assets.NearWalls;
             }
         }
 
@@ -43,8 +43,8 @@ namespace WOLF2D.View
             {
                 map = value;
                 Floors.Clear();
-                FarWalls.Clear();
-                NearWalls.Clear();
+                //FarWalls.Clear();
+                //NearWalls.Clear();
                 for (uint x = 0; x < map.Width; x++)
                     for (uint z = 0; z < map.Depth; z++)
                         if (!IsWall(x, z))
@@ -54,7 +54,21 @@ namespace WOLF2D.View
                             {
                                 XElement wall = XWall(map.GetMapData(x - 1, z));
                                 if (wall != null)
-                                    FarWalls.SetCell((int)x - 1, (int)z, (int)wall.Attribute("Page"));
+                                    AddChild(new Sprite()
+                                    {
+                                        Texture = assets.IsoSlantUp[(uint)wall.Attribute("Page")],
+                                        Position = new Vector2(X(x - 1, z), Y(x - 1, z)),
+                                    });
+                            }
+                            if (z > 0)
+                            {
+                                XElement wall = XWall(map.GetMapData(x, z - 1));
+                                if (wall != null)
+                                    AddChild(new Sprite()
+                                    {
+                                        Texture = assets.IsoSlantDown[(int)wall.Attribute("DarkSide")],
+                                        Position = new Vector2(X(x, z - 1) - 128, Y(x, z - 1)),
+                                    });
                             }
                         }
             }
@@ -68,22 +82,15 @@ namespace WOLF2D.View
             CellTileOrigin = TileMap.TileOrigin.BottomLeft,
         };
 
-        public TileMap FarWalls = new TileMap()
+        public static int X(uint x, uint y)
         {
-            Mode = TileMap.ModeEnum.Isometric,
-            CellSize = new Vector2(254, 128),
-            CellYSort = true,
-            CellTileOrigin = TileMap.TileOrigin.BottomLeft,
-        };
+            return ((int)x - (int)y) * 127 + 64;
+        }
 
-        public TileMap NearWalls = new TileMap()
+        public static int Y(uint x, uint y)
         {
-            Mode = TileMap.ModeEnum.Isometric,
-            CellSize = new Vector2(254, 128),
-            CellYSort = true,
-            CellTileOrigin = TileMap.TileOrigin.BottomLeft,
-            SelfModulate = new Color(1f, 1f, 1f, 0.5f),
-        };
+            return ((int)x + (int)y) * 64 + 160;
+        }
 
         public bool IsWall(uint x, uint z)
         {
