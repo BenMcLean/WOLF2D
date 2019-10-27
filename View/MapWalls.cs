@@ -80,7 +80,8 @@ namespace WOLF2D.View
                                 if (wall != null)
                                     AddChild(new Sprite()
                                     {
-                                        Texture = assets.IsoSlantUp[(uint)wall.Attribute("Page")],
+                                        Texture = assets.IsoSlantDown[(uint)wall.Attribute("Page")],
+                                        FlipH = true,
                                         Position = new Vector2(X(x, z), Y(x, z)),
                                         SelfModulate = partialTransparent,
                                     });
@@ -91,7 +92,8 @@ namespace WOLF2D.View
                                 if (wall != null)
                                     AddChild(new Sprite()
                                     {
-                                        Texture = assets.IsoSlantDown[(int)wall.Attribute("DarkSide")],
+                                        Texture = assets.IsoSlantUp[(int)wall.Attribute("DarkSide")],
+                                        FlipH = true,
                                         Position = new Vector2(X(x, z) - 128, Y(x, z)),
                                         SelfModulate = partialTransparent,
                                     });
