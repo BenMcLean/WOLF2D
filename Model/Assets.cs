@@ -43,6 +43,8 @@ namespace WOLF3D
             if (XML.Element("VgaGraph") != null)
                 VgaGraph = VgaGraph.Load(folder, XML);
 
+            Pushwall = (ushort)(uint)XML?.Element("VSwap")?.Element("Objects")?.Element("Pushwall")?.Attribute("Number");
+
             // Creating floor texture
             uint[] palette = WarpWriterFriendlyPalette(VSwap.Palette);
             ByteArrayRenderer renderer = new ByteArrayRenderer()
@@ -187,6 +189,14 @@ namespace WOLF3D
                         NearWalls.TileSetTexture((int)wall + VSwap.SpritePage, IsoSlantDown[(int)wall]);
                         NearWalls.TileSetTextureOffset((int)wall + VSwap.SpritePage, IsoSlantDownNearWallOffset);
                     }
+
+                Scenery = new TileSet();
+                for (int texture = 0; texture < Textures.Length; texture++)
+                    if (Textures[texture] != null)
+                    {
+                        Scenery.CreateTile(texture);
+                        Scenery.TileSetTexture(texture, Textures[texture]);
+                    }
             }
         }
         private VSwap vswap;
@@ -228,6 +238,8 @@ namespace WOLF3D
         public TileSet FloorTileSet;
         public TileSet FarWalls;
         public TileSet NearWalls;
+        public TileSet Scenery;
+        public ushort Pushwall { get; set; }
 
         public static uint[] WarpWriterFriendlyPalette(uint[] palette)
         {

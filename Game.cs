@@ -20,7 +20,7 @@ public class Game : Node2D
 
         VisualServer.SetDefaultClearColor(new Color(Assets.BackgroundColor));
 
-        AddChild(new MapWalls()
+        AddChild(new Level()
         {
             Assets = Assets,
             Map = Assets.Maps[0],
