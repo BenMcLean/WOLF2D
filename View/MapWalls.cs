@@ -14,6 +14,8 @@ namespace WOLF2D.View
             //FarWalls.AddChild(NearWalls);
         }
 
+        public static Color partialTransparent = new Color(1f, 1f, 1f, 0.5f);
+
         private Assets assets;
         public Assets Assets
         {
@@ -50,6 +52,7 @@ namespace WOLF2D.View
                         if (!IsWall(x, z))
                         {
                             Floors.SetCell((int)x, (int)z, 0);
+                            // Adding near walls
                             if (x > 0)
                             {
                                 XElement wall = XWall(map.GetMapData(x - 1, z));
@@ -68,6 +71,29 @@ namespace WOLF2D.View
                                     {
                                         Texture = assets.IsoSlantDown[(int)wall.Attribute("DarkSide")],
                                         Position = new Vector2(X(x, z - 1) - 128, Y(x, z - 1)),
+                                    });
+                            }
+                            // Adding far walls
+                            if (x < map.Width)
+                            {
+                                XElement wall = XWall(map.GetMapData(x + 1, z));
+                                if (wall != null)
+                                    AddChild(new Sprite()
+                                    {
+                                        Texture = assets.IsoSlantUp[(uint)wall.Attribute("Page")],
+                                        Position = new Vector2(X(x, z), Y(x, z)),
+                                        SelfModulate = partialTransparent,
+                                    });
+                            }
+                            if (z < map.Width)
+                            {
+                                XElement wall = XWall(map.GetMapData(x, z + 1));
+                                if (wall != null)
+                                    AddChild(new Sprite()
+                                    {
+                                        Texture = assets.IsoSlantDown[(int)wall.Attribute("DarkSide")],
+                                        Position = new Vector2(X(x, z) - 128, Y(x, z)),
+                                        SelfModulate = partialTransparent,
                                     });
                             }
                         }
