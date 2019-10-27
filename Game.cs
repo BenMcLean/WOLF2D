@@ -20,10 +20,19 @@ public class Game : Node2D
 
         VisualServer.SetDefaultClearColor(new Color(Assets.BackgroundColor));
 
-        AddChild(new Level()
+        Level level = new Level()
         {
             Assets = Assets,
             Map = Assets.Maps[0],
+        };
+        AddChild(level);
+
+        AddChild(new Label()
+        {
+            Text =
+            "Number of tile IDs: " + Assets.Scenery.GetTilesIds().Count.ToString() + "\n" +
+            "Number of used cells: " + level.Scenery.GetUsedCells().Count.ToString()
+            ,
         });
     }
 }
