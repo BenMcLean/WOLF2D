@@ -9,7 +9,7 @@ namespace WOLF2D.View
     {
         public Level()
         {
-            AddChild(Floors);
+            //AddChild(Floors);
             AddChild(Scenery);
         }
 
@@ -27,6 +27,7 @@ namespace WOLF2D.View
             {
                 assets = value;
                 Floors.TileSet = assets.FloorTileSet;
+                Scenery.TileSet = assets.Scenery;
             }
         }
 
@@ -115,9 +116,11 @@ namespace WOLF2D.View
         public TileMap Scenery = new TileMap()
         {
             Mode = TileMap.ModeEnum.Isometric,
-            CellSize = new Vector2(254, 128),
+            CellSize = new Vector2(127, 64),
             CellYSort = true,
-            CellTileOrigin = TileMap.TileOrigin.TopLeft,
+            CellTileOrigin = TileMap.TileOrigin.BottomLeft,
+            Position = new Vector2(64, -192),
+            Scale = new Vector2(2, 2),
         };
 
         public static int X(uint x, uint y)

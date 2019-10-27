@@ -235,10 +235,10 @@ namespace WOLF3D
         public ImageTexture[] IsoSlantUp;
         public ImageTexture[] IsoSlantDown;
         public ImageTexture Floor;
-        public TileSet FloorTileSet;
-        public TileSet FarWalls;
-        public TileSet NearWalls;
-        public TileSet Scenery;
+        public TileSet FloorTileSet { get; set; }
+        public TileSet FarWalls { get; set; }
+        public TileSet NearWalls { get; set; }
+        public TileSet Scenery { get; set; }
         public ushort Pushwall { get; set; }
 
         public static uint[] WarpWriterFriendlyPalette(uint[] palette)
