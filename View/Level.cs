@@ -5,13 +5,19 @@ using WOLF3D;
 
 namespace WOLF2D.View
 {
-    public class Level : YSort
+    public class Level : Node2D
     {
         public Level()
         {
-            //AddChild(Floors);
-            AddChild(Scenery);
+            AddChild(Floors);
+            AddChild(Content);
+            Content.AddChild(Walls);
+            Content.AddChild(Scenery);
         }
+
+        public YSort Content { get; set; } = new YSort();
+        public YSort Walls { get; set; } = new YSort();
+        public YSort Scenery { get; set; } = new YSort();
 
         public static Color partialTransparent = new Color(1f, 1f, 1f, 0.5f);
 
@@ -27,7 +33,6 @@ namespace WOLF2D.View
             {
                 assets = value;
                 Floors.TileSet = assets.FloorTileSet;
-                Scenery.TileSet = assets.Scenery;
             }
         }
 
@@ -43,7 +48,6 @@ namespace WOLF2D.View
             {
                 map = value;
                 Floors.Clear();
-                Scenery.Clear();
                 for (uint x = 0; x < map.Width; x++)
                     for (uint z = 0; z < map.Depth; z++)
                         if (!IsWall(x, z) || IsPushwall(x, z))
@@ -56,7 +60,7 @@ namespace WOLF2D.View
                                 {
                                     XElement wall = XWall(map.GetMapData(x - 1, z));
                                     if (wall != null && !IsPushwall(x - 1, z))
-                                        AddChild(new Sprite()
+                                        Walls.AddChild(new Sprite()
                                         {
                                             Texture = assets.IsoSlantUp[(uint)wall.Attribute("Page")],
                                             Position = new Vector2(X(x - 1, z), Y(x - 1, z)),
@@ -66,7 +70,7 @@ namespace WOLF2D.View
                                 {
                                     XElement wall = XWall(map.GetMapData(x, z - 1));
                                     if (wall != null && !IsPushwall(x, z - 1))
-                                        AddChild(new Sprite()
+                                        Walls.AddChild(new Sprite()
                                         {
                                             Texture = assets.IsoSlantDown[(int)wall.Attribute("DarkSide")],
                                             Position = new Vector2(X(x, z - 1) - 128, Y(x, z - 1)),
@@ -77,7 +81,7 @@ namespace WOLF2D.View
                                 {
                                     XElement wall = XWall(map.GetMapData(x + 1, z));
                                     if (wall != null && !IsPushwall(x + 1, z))
-                                        AddChild(new Sprite()
+                                        Walls.AddChild(new Sprite()
                                         {
                                             Texture = assets.IsoSlantDown[(uint)wall.Attribute("Page")],
                                             FlipH = true,
@@ -89,7 +93,7 @@ namespace WOLF2D.View
                                 {
                                     XElement wall = XWall(map.GetMapData(x, z + 1));
                                     if (wall != null && !IsPushwall(x, z + 1))
-                                        AddChild(new Sprite()
+                                        Walls.AddChild(new Sprite()
                                         {
                                             Texture = assets.IsoSlantUp[(int)wall.Attribute("DarkSide")],
                                             FlipH = true,
@@ -99,9 +103,9 @@ namespace WOLF2D.View
                                 }
                             }
 
-                            XElement billboard = XBillboard(Map.GetObjectData(x, z));
-                            if (billboard != null)
-                                Scenery.SetCell((int)x, (int)z, (int)billboard.Attribute("Page"));
+                            //XElement billboard = XBillboard(Map.GetObjectData(x, z));
+                            //if (billboard != null)
+                            //    Scenery.SetCell((int)x, (int)z, (int)billboard.Attribute("Page"));
                         }
             }
         }
@@ -112,15 +116,6 @@ namespace WOLF2D.View
             CellSize = new Vector2(254, 128),
             CellYSort = true,
             CellTileOrigin = TileMap.TileOrigin.TopLeft,
-        };
-        public TileMap Scenery = new TileMap()
-        {
-            Mode = TileMap.ModeEnum.Isometric,
-            CellSize = new Vector2(127, 64),
-            CellYSort = true,
-            CellTileOrigin = TileMap.TileOrigin.BottomLeft,
-            Position = new Vector2(64, -192),
-            Scale = new Vector2(2, 2),
         };
 
         public static int X(uint x, uint y)

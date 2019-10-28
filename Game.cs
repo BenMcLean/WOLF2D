@@ -26,13 +26,5 @@ public class Game : Node2D
             Map = Assets.Maps[0],
         };
         AddChild(level);
-
-        AddChild(new Label()
-        {
-            Text =
-            "Number of tile IDs: " + Assets.Scenery.GetTilesIds().Count.ToString() + "\n" +
-            "Number of used cells: " + level.Scenery.GetUsedCells().Count.ToString()
-            ,
-        });
     }
 }
