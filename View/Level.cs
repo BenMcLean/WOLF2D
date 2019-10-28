@@ -103,12 +103,19 @@ namespace WOLF2D.View
                                 }
                             }
 
-                            //XElement billboard = XBillboard(Map.GetObjectData(x, z));
-                            //if (billboard != null)
-                            //    Scenery.SetCell((int)x, (int)z, (int)billboard.Attribute("Page"));
+                            XElement billboard = XBillboard(Map.GetObjectData(x, z));
+                            if (billboard != null)
+                                Scenery.AddChild(new Sprite()
+                                {
+                                    Texture = assets.Textures[(int)billboard.Attribute("Page")],
+                                    Position = new Vector2(X(x, z) - 64, Y(x, z) - 32),
+                                    Scale = DoubleScale,
+                                });
                         }
             }
         }
+
+        public static readonly Vector2 DoubleScale = new Vector2(2, 2);
 
         public TileMap Floors = new TileMap()
         {
