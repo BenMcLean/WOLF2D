@@ -224,6 +224,22 @@ namespace WOLF3D
                         Pics[i] = new ImageTexture();
                         Pics[i].CreateFromImage(image, 0); //(int)Texture.FlagsEnum.ConvertToLinear);
                     }
+                Fonts = new BitmapFont[VgaGraph.Fonts.Length];
+                for (uint font = 0; font < Fonts.Length; font++)
+                {
+                    Fonts[font] = new BitmapFont();
+                    int textureIndex = 0;
+                    for (int character = 0; character < VgaGraph.Fonts[font].Character.Length; character++)
+                        if (VgaGraph.Fonts[font].Character[character] != null)
+                        {
+                            Godot.Image image = new Image();
+                            image.CreateFromData((int)VgaGraph.Fonts[font].Width((byte)character), (int)VgaGraph.Fonts[font].Height, false, Image.Format.Rgba8, VgaGraph.Fonts[font].Character[character]);
+                            ImageTexture imageTexture = new ImageTexture();
+                            imageTexture.CreateFromImage(image, 0);
+                            Fonts[font].AddTexture(imageTexture);
+                            Fonts[font].AddChar(character, textureIndex++, new Rect2(0f, 0f, imageTexture.GetWidth(), imageTexture.GetHeight()));
+                        }
+                }
             }
         }
         private VgaGraph vgaGraph;
@@ -231,6 +247,7 @@ namespace WOLF3D
         public uint BackgroundColor { get; set; } = 255;
         public ImageTexture[] Textures;
         public ImageTexture[] Pics;
+        public BitmapFont[] Fonts;
         public ImageTexture[] IsoTile;
         public ImageTexture[] IsoSlantUp;
         public ImageTexture[] IsoSlantDown;

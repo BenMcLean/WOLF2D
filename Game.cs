@@ -26,5 +26,15 @@ public class Game : Node2D
             Map = Assets.Maps[0],
         };
         AddChild(level);
+
+
+        AddChild(new Label()
+        {
+            Text = "Dopefish lives!",
+            Theme = new Theme()
+            {
+                DefaultFont = Assets.Fonts[0],
+            },
+        });
     }
 }
