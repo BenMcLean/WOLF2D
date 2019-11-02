@@ -16,56 +16,88 @@ namespace WOLF3D
                 return new VgaGraph(vgaHead, vgaGraphStream, vgaDict, xml);
         }
 
+        /// <summary>
+        /// Wolfenstein 3-D bitmap fonts don't look right when represented 1:1 from what's in the file. Because of their having been intended to be displayed on VGA screen mode 13h, they need to be 20% taller.
+        /// <para/>
+        /// I am achieving this by storing them as textures in which each character is five times wider and six times taller than the VGAGRAPH says they should be.
+        /// <para/>
+        /// Thank God we live in the distant future where we have so much RAM that we can waste it on crap like that.
+        /// </summary>
         public struct Font
         {
-            public ushort Height;
-            public byte[] Width;
+            public ushort RawHeight;
+            public byte[] RawWidth;
             public byte[][] Character;
+
+            public uint Height
+            {
+                get
+                {
+                    return (uint)RawHeight * 6;
+                }
+            }
+
+            public uint Width(char character)
+            {
+                return Width((byte)character);
+            }
+
+            public uint Width(byte character)
+            {
+                return RawWidth[character] * (uint)5;
+            }
 
             public Font(Stream stream)
             {
                 using (BinaryReader binaryReader = new BinaryReader(stream))
                 {
-                    Height = binaryReader.ReadUInt16();
+                    RawHeight = binaryReader.ReadUInt16();
                     ushort[] location = new ushort[256];
                     for (uint i = 0; i < location.Length; i++)
                         location[i] = binaryReader.ReadUInt16();
-                    Width = new byte[location.Length];
-                    for (uint i = 0; i < Width.Length; i++)
-                        Width[i] = binaryReader.ReadByte();
-                    Character = new byte[Width.Length][];
-                    for (uint i = 0; i < Character.Length; i++)
-                    {
-                        Character[i] = new byte[Width[i] * Height * 4];
-                        stream.Seek(location[i], 0);
-                        for (uint j = 0; j < Character[i].Length / 4; j++)
-                            if (binaryReader.ReadByte() != 0)
-                                for (uint k = 0; k < 4; k++)
-                                    Character[i][j * 4 + k] = 255;
-                    }
+                    RawWidth = new byte[location.Length];
+                    for (uint i = 0; i < RawWidth.Length; i++)
+                        RawWidth[i] = binaryReader.ReadByte();
+                    Character = new byte[RawWidth.Length][];
+                    for (uint character = 0; character < Character.Length; character++)
+                        if (RawWidth[character] > 0)
+                        {
+                            uint pixelLength = (uint)RawWidth[character] * RawHeight;
+                            Character[character] = new byte[Width((byte)character) * Height * 4];
+                            stream.Seek(location[character], 0);
+                            for (uint pixel = 0; pixel < pixelLength; pixel++)
+                                if (binaryReader.ReadByte() != 0)
+                                {
+                                    uint xStart = (pixel % RawWidth[character]) * 20,
+                                        yStart = (pixel / RawWidth[character]) * 6;
+                                    for (uint x = xStart; x < xStart + 20; x++)
+                                        for (uint y = yStart; y < yStart + 6; y++)
+                                            Character[character][y * Width((byte)character) * 4 + x] = 255;
+                                }
+                        }
                 }
             }
 
             public byte[] Line(string input)
             {
-                int width = CalcWidth(input) * 4;
+                uint width = CalcWidth(input) * 4;
                 byte[] bytes = new byte[width * Height];
-                int rowStart = 0;
+                uint rowStart = 0;
                 foreach (char c in input)
                 {
-                    for (int x = 0; x < Width[c] * 4; x++)
+                    for (int x = 0; x < Width(c) * 4; x++)
                         for (int y = 0; y < Height; y++)
-                            bytes[y * width + rowStart + x] = Character[c][y * Width[c] * 4 + x];
-                    rowStart += Width[c] * 4;
+                            bytes[y * width + rowStart + x] = Character[c][y * Width(c) * 4 + x];
+                    rowStart += Width(c) * 4;
                 }
                 return bytes;
             }
 
-            public int CalcWidth(string input)
+            public uint CalcWidth(string input)
             {
-                int result = 0;
+                uint result = 0;
                 foreach (char c in input)
-                    result += Width[c];
+                    result += Width(c);
                 return result;
             }
         }

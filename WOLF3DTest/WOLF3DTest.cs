@@ -105,7 +105,7 @@ namespace WOLF3DTest
             Console.Write("Writing letter \"" + letter + "\":");
             for (uint i = 0; i < vgaGraph.Fonts[font].Character[letter].Length; i++)
             {
-                if (i % (vgaGraph.Fonts[font].Width[letter] * 4) == 0)
+                if (i % (vgaGraph.Fonts[font].Width(letter) * 4) == 0)
                     Console.WriteLine();
                 Console.Write(
                     vgaGraph.Fonts[font].Character[letter][i] == 0 ?
@@ -118,7 +118,7 @@ namespace WOLF3DTest
             string str = "Ab";
             Console.Write("Writing string \"" + str + "\":");
             byte[] test = vgaGraph.Fonts[font].Line(str);
-            int width = vgaGraph.Fonts[font].CalcWidth(str) * 4;
+            uint width = vgaGraph.Fonts[font].CalcWidth(str) * 4;
             for (uint i = 0; i < test.Length; i++)
             {
                 if (i % width == 0)
