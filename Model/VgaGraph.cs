@@ -47,35 +47,32 @@ namespace WOLF3D
                 return RawWidth[character] * (uint)5;
             }
 
-            public Font(Stream stream)
+            public Font(BinaryReader binaryReader)
             {
-                using (BinaryReader binaryReader = new BinaryReader(stream))
-                {
-                    RawHeight = binaryReader.ReadUInt16();
-                    ushort[] location = new ushort[256];
-                    for (uint i = 0; i < location.Length; i++)
-                        location[i] = binaryReader.ReadUInt16();
-                    RawWidth = new byte[location.Length];
-                    for (uint i = 0; i < RawWidth.Length; i++)
-                        RawWidth[i] = binaryReader.ReadByte();
-                    Character = new byte[RawWidth.Length][];
-                    for (uint character = 0; character < Character.Length; character++)
-                        if (RawWidth[character] > 0)
-                        {
-                            uint pixelLength = (uint)RawWidth[character] * RawHeight;
-                            Character[character] = new byte[Width((byte)character) * Height * 4];
-                            stream.Seek(location[character], 0);
-                            for (uint pixel = 0; pixel < pixelLength; pixel++)
-                                if (binaryReader.ReadByte() != 0)
-                                {
-                                    uint xStart = (pixel % RawWidth[character]) * 20,
-                                        yStart = (pixel / RawWidth[character]) * 6;
-                                    for (uint x = xStart; x < xStart + 20; x++)
-                                        for (uint y = yStart; y < yStart + 6; y++)
-                                            Character[character][y * Width((byte)character) * 4 + x] = 255;
-                                }
-                        }
-                }
+                RawHeight = binaryReader.ReadUInt16();
+                ushort[] location = new ushort[256];
+                for (uint i = 0; i < location.Length; i++)
+                    location[i] = binaryReader.ReadUInt16();
+                RawWidth = new byte[location.Length];
+                for (uint i = 0; i < RawWidth.Length; i++)
+                    RawWidth[i] = binaryReader.ReadByte();
+                Character = new byte[RawWidth.Length][];
+                for (uint character = 0; character < Character.Length; character++)
+                    if (RawWidth[character] > 0)
+                    {
+                        uint pixelLength = (uint)RawWidth[character] * RawHeight;
+                        Character[character] = new byte[Width((byte)character) * Height * 4];
+                        binaryReader.BaseStream.Seek(location[character], 0);
+                        for (uint pixel = 0; pixel < pixelLength; pixel++)
+                            if (binaryReader.ReadByte() != 0)
+                            {
+                                uint xStart = (pixel % RawWidth[character]) * 20,
+                                    yStart = (pixel / RawWidth[character]) * 6;
+                                for (uint x = xStart; x < xStart + 20; x++)
+                                    for (uint y = yStart; y < yStart + 6; y++)
+                                        Character[character][y * Width((byte)character) * 4 + x] = 255;
+                            }
+                    }
             }
 
             public byte[] Line(string input)
@@ -119,7 +116,8 @@ namespace WOLF3D
             uint startFont = (uint)XML.Element("Sizes").Attribute("StartFont");
             Fonts = new Font[(uint)XML.Element("Sizes").Attribute("NumFont")];
             for (uint i = 0; i < Fonts.Length; i++)
-                using (MemoryStream font = new MemoryStream(file[startFont + i]))
+                using (MemoryStream memoryStream = new MemoryStream(file[startFont + i]))
+                using (BinaryReader font = new BinaryReader(memoryStream))
                     Fonts[i] = new Font(font);
             uint startPics = (uint)XML.Element("Sizes").Attribute("StartPics");
             Pics = new byte[(uint)XML.Element("Sizes").Attribute("NumPics")][];
@@ -149,7 +147,7 @@ namespace WOLF3D
                     uint size = head[i + 1] - head[i];
                     if (size > 0)
                     {
-                        file.Seek(head[i], 0);
+                        binaryReader.BaseStream.Seek(head[i], 0);
                         uint length = binaryReader.ReadUInt32();
                         binaryReader.Read(split[i] = new byte[size - 2], 0, split[i].Length);
                         split[i] = CAL_HuffExpand(split[i], dictionary, length);

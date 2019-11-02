@@ -86,7 +86,7 @@ namespace WOLF3D
             using (BinaryReader gameMapsReader = new BinaryReader(gameMaps))
                 foreach (long offset in offsets)
                 {
-                    gameMaps.Seek(offset, 0);
+                    gameMapsReader.BaseStream.Seek(offset, 0);
                     uint mapOffset = gameMapsReader.ReadUInt32(),
                         objectOffset = gameMapsReader.ReadUInt32(),
                         otherOffset = gameMapsReader.ReadUInt32();
@@ -113,7 +113,7 @@ namespace WOLF3D
                     // Carmackized game maps files are external GAMEMAPS.xxx files and the map header is stored internally in the executable. The map header must be extracted and the game maps decompressed before TED5 can access them. TED5 itself can produce carmackized files and external MAPHEAD.xxx files. Carmackization does not replace the RLEW compression used in uncompressed data, but compresses this data, that is, the data is doubly compressed.
 
                     ushort[] mapData;
-                    gameMaps.Seek(mapOffset, 0);
+                    gameMapsReader.BaseStream.Seek(mapOffset, 0);
                     if (isCarmackized)
                         mapData = CarmackExpand(gameMapsReader);
                     else
@@ -125,7 +125,7 @@ namespace WOLF3D
                     map.MapData = RlewExpand(mapData, (ushort)(map.Depth * map.Width), 0xABCD);
 
                     ushort[] objectData;
-                    gameMaps.Seek(objectOffset, 0);
+                    gameMapsReader.BaseStream.Seek(objectOffset, 0);
                     if (isCarmackized)
                         objectData = CarmackExpand(gameMapsReader);
                     else
@@ -137,7 +137,7 @@ namespace WOLF3D
                     map.ObjectData = RlewExpand(objectData, (ushort)(map.Depth * map.Width), 0xABCD);
 
                     ushort[] otherData;
-                    gameMaps.Seek(otherOffset, 0);
+                    gameMapsReader.BaseStream.Seek(otherOffset, 0);
                     if (isCarmackized)
                         otherData = CarmackExpand(gameMapsReader);
                     else

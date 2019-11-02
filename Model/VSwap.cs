@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -64,11 +63,11 @@ namespace WOLF3D
                 for (page = 0; page < SpritePage; page++)
                     if (pageOffsets[page] > 0)
                     {
-                        stream.Seek(pageOffsets[page], 0);
+                        binaryReader.BaseStream.Seek(pageOffsets[page], 0);
                         Indexes[page] = new byte[tileSqrt * tileSqrt];
                         for (ushort col = 0; col < tileSqrt; col++)
                             for (ushort row = 0; row < tileSqrt; row++)
-                                Indexes[page][tileSqrt * row + col] = (byte)stream.ReadByte();
+                                Indexes[page][tileSqrt * row + col] = (byte)binaryReader.ReadByte();
                         Pages[page] = Index2ByteArray(Indexes[page], palette);
                     }
 
@@ -76,7 +75,7 @@ namespace WOLF3D
                 for (; page < Pages.Length; page++)
                     if (pageOffsets[page] > 0)
                     {
-                        stream.Seek(pageOffsets[page], 0);
+                        binaryReader.BaseStream.Seek(pageOffsets[page], 0);
                         ushort leftExtent = binaryReader.ReadUInt16(),
                             rightExtent = binaryReader.ReadUInt16(),
                             startY, endY;
@@ -90,7 +89,7 @@ namespace WOLF3D
                         for (ushort column = 0; column <= rightExtent - leftExtent; column++)
                         {
                             long commands = columnDataOffsets[column];
-                            stream.Seek(commands, 0);
+                            binaryReader.BaseStream.Seek(commands, 0);
                             while ((endY = binaryReader.ReadUInt16()) != 0)
                             {
                                 endY >>= 1;
@@ -98,11 +97,11 @@ namespace WOLF3D
                                 startY = binaryReader.ReadUInt16();
                                 startY >>= 1;
                                 commands = stream.Position;
-                                stream.Seek(trexels, 0);
+                                binaryReader.BaseStream.Seek(trexels, 0);
                                 for (ushort row = startY; row < endY; row++)
                                     Indexes[page][(row * tileSqrt - 1) + column + leftExtent - 1] = binaryReader.ReadByte();
                                 trexels = stream.Position;
-                                stream.Seek(commands, 0);
+                                binaryReader.BaseStream.Seek(commands, 0);
                             }
                         }
                         Pages[page] = Index2ByteArray(Indexes[page], palette);
@@ -110,8 +109,8 @@ namespace WOLF3D
 
                 // read in digisounds
                 byte[] soundData = new byte[stream.Length - pageOffsets[Pages.Length]];
-                stream.Seek(pageOffsets[Pages.Length], 0);
-                stream.Read(soundData, 0, soundData.Length);
+                binaryReader.BaseStream.Seek(pageOffsets[Pages.Length], 0);
+                binaryReader.BaseStream.Read(soundData, 0, soundData.Length);
 
                 uint start = pageOffsets[NumPages - 1] - pageOffsets[Pages.Length];
                 ushort[][] soundTable;
