@@ -19,16 +19,12 @@ namespace WOLF2D.View
         public YSort Walls { get; set; } = new YSort();
         public YSort Scenery { get; set; } = new YSort();
 
-        public static Color partialTransparent = new Color(1f, 1f, 1f, 0.5f);
+        public static readonly Color partialTransparent = new Color(1f, 1f, 1f, 0.5f);
 
         private Assets assets;
         public Assets Assets
         {
-            get
-            {
-                return assets;
-            }
-
+            get => assets;
             set
             {
                 assets = value;
@@ -125,75 +121,27 @@ namespace WOLF2D.View
             CellTileOrigin = TileMap.TileOrigin.TopLeft,
         };
 
-        public static int X(uint x, uint y)
-        {
-            return ((int)x - (int)y) * 127 + 64;
-        }
-
-        public static int Y(uint x, uint y)
-        {
-            return (int)(x + y) * 64 + 32;
-        }
-
-        public bool IsWall(uint x, uint z)
-        {
-            return IsWall(Map.GetMapData(x, z));
-        }
-
-        public bool IsWall(ushort cell)
-        {
-            return XWall(cell) != null;
-        }
-
-        public XElement XWall(ushort cell)
-        {
-            return (from e in Assets?.XML?.Element("VSwap")?.Element("Walls")?.Elements("Wall") ?? Enumerable.Empty<XElement>()
-                    where (uint)e.Attribute("Number") == cell
-                    select e).FirstOrDefault();
-        }
-
-        public bool IsDoor(uint x, uint z)
-        {
-            return IsDoor(Map.GetMapData(x, z));
-        }
-
-        public bool IsDoor(ushort cell)
-        {
-            return XDoor(cell) != null;
-        }
-
-        public XElement XDoor(ushort cell)
-        {
-            return (from e in Assets?.XML?.Element("VSwap")?.Element("Walls")?.Elements("Door") ?? Enumerable.Empty<XElement>()
-                    where (uint)e.Attribute("Number") == cell
-                    select e).FirstOrDefault();
-        }
-
-        public bool IsPushwall(uint x, uint z)
-        {
-            return IsPushwall(Map.GetObjectData(x, z));
-        }
-
-        public bool IsPushwall(ushort cell)
-        {
-            return cell == assets.Pushwall;
-        }
-
-        public bool IsBillboard(uint x, uint z)
-        {
-            return IsBillboard(Map.GetObjectData(x, z));
-        }
-
-        public bool IsBillboard(ushort cell)
-        {
-            return XBillboard(cell) != null;
-        }
-
-        public XElement XBillboard(ushort cell)
-        {
-            return (from e in Assets?.XML?.Element("VSwap")?.Element("Objects")?.Elements("Billboard") ?? Enumerable.Empty<XElement>()
-                    where (uint)e.Attribute("Number") == cell
-                    select e).FirstOrDefault();
-        }
+        public static int X(uint x, uint y) => ((int)x - (int)y) * 127 + 64;
+        public static int Y(uint x, uint y) => (int)(x + y) * 64 + 32;
+        public bool IsWall(uint x, uint z) => IsWall(Map.GetMapData(x, z));
+        public bool IsWall(ushort cell) => XWall(cell) != null;
+        public XElement XWall(ushort cell) =>
+            (from e in Assets?.XML?.Element("VSwap")?.Element("Walls")?.Elements("Wall") ?? Enumerable.Empty<XElement>()
+             where (uint)e.Attribute("Number") == cell
+             select e).FirstOrDefault();
+        public bool IsDoor(uint x, uint z) => IsDoor(Map.GetMapData(x, z));
+        public bool IsDoor(ushort cell) => XDoor(cell) != null;
+        public XElement XDoor(ushort cell) =>
+            (from e in Assets?.XML?.Element("VSwap")?.Element("Walls")?.Elements("Door") ?? Enumerable.Empty<XElement>()
+             where (uint)e.Attribute("Number") == cell
+             select e).FirstOrDefault();
+        public bool IsPushwall(uint x, uint z) => IsPushwall(Map.GetObjectData(x, z));
+        public bool IsPushwall(ushort cell) => cell == assets.Pushwall;
+        public bool IsBillboard(uint x, uint z) => IsBillboard(Map.GetObjectData(x, z));
+        public bool IsBillboard(ushort cell) => XBillboard(cell) != null;
+        public XElement XBillboard(ushort cell) =>
+            (from e in Assets?.XML?.Element("VSwap")?.Element("Objects")?.Elements("Billboard") ?? Enumerable.Empty<XElement>()
+             where (uint)e.Attribute("Number") == cell
+             select e).FirstOrDefault();
     }
 }
