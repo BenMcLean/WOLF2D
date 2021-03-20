@@ -1,5 +1,4 @@
 ﻿using Godot;
-using OPL;
 using System.IO;
 using System.Xml.Linq;
 using WarpWriter.View.Color;
@@ -38,8 +37,6 @@ namespace WOLF3D
                 VSwap = VSwap.Load(folder, XML);
             if (XML.Element("Maps") != null)
                 Maps = GameMap.Load(folder, XML);
-            if (XML.Element("Audio") != null)
-                AudioT = AudioT.Load(folder, XML);
             if (XML.Element("VgaGraph") != null)
                 VgaGraph = VgaGraph.Load(folder, XML);
 
@@ -81,8 +78,6 @@ namespace WOLF3D
 
         public XElement XML { get; set; }
         public GameMap[] Maps { get; set; }
-        public OplPlayer OplPlayer { get; set; }
-        public AudioT AudioT { get; set; }
 
         public VSwap VSwap
         {

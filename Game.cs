@@ -1,40 +1,34 @@
 using Godot;
-using NScumm.Audio.OPL.Woody;
-using OPL;
 using WOLF2D.View;
 using WOLF3D;
 
 public class Game : Node2D
 {
-    public static string Folder = "WOLF3D";
-    public static Assets Assets;
+	public static string Folder = "WOLF3D";
+	public static Assets Assets;
 
-    public override void _Ready()
-    {
-        DownloadShareware.Main(new string[] { Folder });
-        Assets = new Assets(Folder);
-        AddChild(Assets.OplPlayer = new OplPlayer()
-        {
-            Opl = new WoodyEmulatorOpl(NScumm.Core.Audio.OPL.OplType.Opl3)
-        });
+	public override void _Ready()
+	{
+		DownloadShareware.Main(new string[] { Folder });
+		Assets = new Assets(Folder);
 
-        VisualServer.SetDefaultClearColor(new Color(Assets.BackgroundColor));
+		VisualServer.SetDefaultClearColor(new Color(Assets.BackgroundColor));
 
-        Level level = new Level()
-        {
-            Assets = Assets,
-            Map = Assets.Maps[0],
-        };
-        AddChild(level);
+		Level level = new Level()
+		{
+			Assets = Assets,
+			Map = Assets.Maps[0],
+		};
+		AddChild(level);
 
 
-        AddChild(new Label()
-        {
-            Text = "Dopefish lives!",
-            Theme = new Theme()
-            {
-                DefaultFont = Assets.Fonts[0],
-            },
-        });
-    }
+		AddChild(new Label()
+		{
+			Text = "Dopefish lives!",
+			Theme = new Theme()
+			{
+				DefaultFont = Assets.Fonts[0],
+			},
+		});
+	}
 }

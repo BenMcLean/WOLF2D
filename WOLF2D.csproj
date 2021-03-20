@@ -1,96 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Godot.NET.Sdk/3.2.4">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9E424977-D1E2-4C71-842E-346B46BDE8B1}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <OutputPath>.mono\temp\bin\$(Configuration)</OutputPath>
-    <RootNamespace>WOLF2D</RootNamespace>
-    <AssemblyName>WOLF2D</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <BaseIntermediateOutputPath>.mono\temp\obj</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(BaseIntermediateOutputPath)\$(Configuration)</IntermediateOutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>portable</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>portable</DebugType>
-    <Optimize>true</Optimize>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Tools|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>portable</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TOOLS;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GodotSharp">
-      <HintPath>$(ProjectDir)\.mono\assemblies\GodotSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="GodotSharpEditor" Condition=" '$(Configuration)' == 'Tools' ">
-      <HintPath>$(ProjectDir)\.mono\assemblies\GodotSharpEditor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
+    <Compile Remove="OPL\**" />
+    <Compile Remove="WOLF3DTest\**" />
+    <EmbeddedResource Remove="OPL\**" />
+    <EmbeddedResource Remove="WOLF3DTest\**" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="WOLF3D\game.xml" />
-    <Compile Include="Camera2DFreeLook.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="Model\Assets.cs" />
-    <Compile Include="Model\AudioT.cs" />
-    <Compile Include="Model\DownloadShareware.cs" />
-    <Compile Include="Model\GameMap.cs" />
-    <Compile Include="Model\VgaGraph.cs" />
-    <Compile Include="Model\VSwap.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\Level.cs" />
-    <Compile Include="WarpWriter\Model\Decide\IDecide.cs" />
-    <Compile Include="WarpWriter\Model\Extra\BasicTools.cs" />
-    <Compile Include="WarpWriter\Model\Extra\RNG.cs" />
-    <Compile Include="WarpWriter\Model\Extra\VoxIO.cs" />
-    <Compile Include="WarpWriter\Model\Fetch\ArrayModel.cs" />
-    <Compile Include="WarpWriter\Model\Fetch\ColorFetch.cs" />
-    <Compile Include="WarpWriter\Model\Fetch\Fetch.cs" />
-    <Compile Include="WarpWriter\Model\Fetch\FetchModel.cs" />
-    <Compile Include="WarpWriter\Model\Fetch\IFetch.cs" />
-    <Compile Include="WarpWriter\Model\Fetch\IModel.cs" />
-    <Compile Include="WarpWriter\Model\Seq\VoxelSeq.cs" />
-    <Compile Include="WarpWriter\View\Color\Colorizer.cs" />
-    <Compile Include="WarpWriter\View\Color\FlatVoxelColor.cs" />
-    <Compile Include="WarpWriter\View\Color\IVoxelColor.cs" />
-    <Compile Include="WarpWriter\View\Color\PaletteReducer.cs" />
-    <Compile Include="WarpWriter\View\Color\ShadedVoxelColor.cs" />
-    <Compile Include="WarpWriter\View\IsoFlatDraw.cs" />
-    <Compile Include="WarpWriter\View\PixelCubeDraw.cs" />
-    <Compile Include="WarpWriter\View\Render\ByteArrayRenderer.cs" />
-    <Compile Include="WarpWriter\View\Render\IRectangleRenderer.cs" />
-    <Compile Include="WarpWriter\View\Render\ITriangleRenderer.cs" />
-    <Compile Include="WarpWriter\View\Render\IVoxelRenderer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="OPL\OPL.csproj">
-      <Project>{CC078116-75E0-49AC-A92A-58F7E505B9C2}</Project>
-      <Name>OPL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
