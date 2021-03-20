@@ -5,6 +5,9 @@ using WOLF3D;
 
 namespace WOLF2D.View
 {
+    /// <summary>
+    /// x + 1 is going lower left, z + 1 is going lower right.
+    /// </summary>
     public class Level : Node2D
     {
         public Level()
@@ -51,28 +54,38 @@ namespace WOLF2D.View
                             Floors.SetCell((int)x, (int)z, 0);
                             if (!IsDoor(x, z))
                             {
-                                // Adding near walls
+                                // Adding far walls
                                 if (x > 0)
                                 {
                                     XElement wall = XWall(map.GetMapData(x - 1, z));
                                     if (wall != null && !IsPushwall(x - 1, z))
-                                        Walls.AddChild(new Sprite()
+                                    {
+                                        Sprite sprite = new Sprite()
                                         {
                                             Texture = assets.IsoSlantUp[(uint)wall.Attribute("Page")],
                                             Position = new Vector2(X(x - 1, z), Y(x - 1, z)),
-                                        });
+                                        };
+                                        if (!IsWall(x - 1, z - 1) || IsPushwall(x - 1, z - 1))
+                                            sprite.SelfModulate = partialTransparent;
+                                        Walls.AddChild(sprite);
+                                    }
                                 }
                                 if (z > 0)
                                 {
                                     XElement wall = XWall(map.GetMapData(x, z - 1));
                                     if (wall != null && !IsPushwall(x, z - 1))
-                                        Walls.AddChild(new Sprite()
+                                    {
+                                        Sprite sprite = new Sprite()
                                         {
                                             Texture = assets.IsoSlantDown[(int)wall.Attribute("DarkSide")],
                                             Position = new Vector2(X(x, z - 1) - 128, Y(x, z - 1)),
-                                        });
+                                        };
+                                        if (!IsWall(x - 1, z - 1) || IsPushwall(x - 1, z - 1))
+                                            sprite.SelfModulate = partialTransparent;
+                                        Walls.AddChild(sprite);
+                                    }
                                 }
-                                // Adding far walls
+                                // Adding near walls
                                 if (x < map.Width)
                                 {
                                     XElement wall = XWall(map.GetMapData(x + 1, z));
@@ -98,7 +111,6 @@ namespace WOLF2D.View
                                         });
                                 }
                             }
-
                             XElement billboard = XBillboard(Map.GetObjectData(x, z));
                             if (billboard != null)
                                 Scenery.AddChild(new Sprite()
